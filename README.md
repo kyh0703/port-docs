@@ -6,4 +6,4 @@
 
 사용자 문서는 실제 실행 경로, 사전 조건, 확인할 결과, 채널·권한·배포 상태에 따른 제한을 짧게 설명한다. 가이드에서 Agent 배포 → 채널 연결 → 상담 확인 순서로 시작하고, AI·운영 탭에서 기능별 절차를 찾는다. 개발자 문서는 실행 중인 API 계약과 웹 설치 흐름을 확인한 뒤 실제 요청 경로, 인증 경계, 오류를 설명한다. 공개 API 호스트를 확인하지 못했다면 주소를 단정하지 않는다. 한국어 사용자 문서는 설명형 해요체를 사용하고, 영문 문서는 같은 범위의 자연스러운 영어로 유지한다.
 
-문서 수정 시 양쪽 언어를 함께 갱신하고 `mint validate`, `mint broken-links`를 실행한다. Mintlify GitHub 연결은 `kyh0703/port-docs` 저장소의 `main`을 사용한다.
+문서 수정 시 양쪽 언어를 함께 갱신하고 `mint validate`, `mint broken-links`를 실행한다. Mintlify GitHub 연결은 `kyh0703/port-docs` 저장소의 `main`을 사용한다. 공개 기준 주소는 `https://overthinker.mintlify.app/`이다. 이전 `.mintlify.site` 주소는 별도 배포 버전의 캐시를 제공하므로 신규 링크에 사용하지 않는다.
