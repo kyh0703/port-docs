@@ -9,3 +9,5 @@
 문서 수정 시 양쪽 언어를 함께 갱신하고 `mint validate`, `mint broken-links`를 실행한다. Mintlify GitHub 연결은 `kyh0703/port-docs` 저장소의 `main`을 사용한다. 공개 기준 주소는 `https://overthinker.mintlify.app/`이다. 이전 `.mintlify.site` 주소는 별도 배포 버전의 캐시를 제공하므로 신규 링크에 사용하지 않는다.
 
 `brand/`의 밝은·어두운 테마 로고는 `port-web/public/brand/`의 원본을 사용한다. `theme-selector.js`와 `theme-selector.css`는 웹의 `ThemeDropdown`과 같은 아이콘 버튼·테마별 아이콘·선택 체크를 사용한다. 브라우저 Popover API로 메뉴를 표시하고 방향키·Home·End·Enter·Escape를 지원한다. 테마 변경과 저장은 Mintlify의 기존 버튼 핸들러에 위임한다. Maple의 `data-theme-preference-*` 속성에 의존하므로 테마 업데이트 때 데스크톱·모바일에서 확인한다. 스크립트 또는 Popover API를 사용할 수 없거나 필요한 버튼이 없으면 기존 버튼을 유지한다.
+
+언어 버튼은 테마 왼쪽에 배치하고 `한국어 / English` 메뉴에서 같은 문서의 기본 경로와 `/en/` 경로를 전환한다. 쿼리는 유지하지만 번역마다 다른 제목 앵커는 전달하지 않는다. 새 버튼이 마운트된 경우에만 기존 언어 선택을 숨긴다. 두 메뉴는 반투명 배경·블러·얇은 테두리를 공유하며, 블러 미지원 환경이나 투명도 감소 설정에서는 불투명 배경으로 가독성을 유지한다.

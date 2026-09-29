@@ -1,12 +1,14 @@
 (() => {
   const switchSelector = '[data-theme-preference-switch="pill"]';
   const themes = ['system', 'light', 'dark'];
+  const languages = ['ko', 'en'];
   // Match port-web's ThemeDropdown Lucide icons without adding a React runtime.
   const paths = {
     system: '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>',
     light: '<circle cx="12" cy="12" r="4"/><path d="M12 2v2m0 16v2M2 12h2m16 0h2M4.93 4.93l1.42 1.42m11.3 11.3 1.42 1.42M4.93 19.07l1.42-1.42m11.3-11.3 1.42-1.42"/>',
     dark: '<path d="M20.985 12.486A9 9 0 1 1 11.51 3.01a7 7 0 0 0 9.475 9.476Z"/>',
     check: '<path d="m20 6-11 11-5-5"/>',
+    language: '<path d="m5 8 6 6m-7 0 6-6 2-5M2 5h12M7 2h1m6 20 5-11 5 11m-8-4h6"/>',
   };
   let nextId = 0;
 
@@ -14,31 +16,41 @@
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${paths[name]}</svg>`;
   }
 
-  function mountMenu(group) {
+  function mountMenu(group, kind = 'theme') {
     const wrapper = document.createElement('div');
-    wrapper.className = 'ot-theme';
+    wrapper.className = `ot-theme ot-${kind}-control`;
     const trigger = document.createElement('button');
     trigger.type = 'button';
-    trigger.className = 'ot-theme-trigger';
+    trigger.className = `ot-theme-trigger ot-${kind}-button`;
     trigger.setAttribute('aria-haspopup', 'menu');
     trigger.setAttribute('aria-expanded', 'false');
     const menu = document.createElement('div');
     menu.className = 'ot-theme-menu';
-    menu.id = `ot-theme-menu-${++nextId}`;
+    menu.id = `ot-${kind}-menu-${++nextId}`;
     menu.setAttribute('popover', 'auto');
     menu.setAttribute('role', 'menu');
     trigger.setAttribute('aria-controls', menu.id);
-    const items = themes.map((theme) => {
+    const values = kind === 'language' ? languages : themes;
+    const items = values.map((value) => {
       const item = document.createElement('button');
       item.type = 'button';
       item.className = 'ot-theme-option';
       item.setAttribute('role', 'menuitemradio');
       item.tabIndex = -1;
-      item.innerHTML = `${icon(theme)}<span></span><span class="ot-theme-check">${icon('check')}</span>`;
+      item.innerHTML = `${icon(kind === 'language' ? 'language' : value)}<span></span><span class="ot-theme-check">${icon('check')}</span>`;
       item.addEventListener('click', () => {
-        // Maple's semantic attributes are an upstream dependency. Its native
-        // handler remains the sole owner of persistence and theme resolution.
-        group.querySelector(`button[data-theme-preference-value="${theme}"]`)?.click();
+        if (kind === 'language') {
+          const currentLanguage = document.documentElement.lang.startsWith('ko') ? 'ko' : 'en';
+          if (value !== currentLanguage) {
+            // Every published document has matching Korean and English paths.
+            // Heading fragments are translated, so retain the page, not its fragment.
+            const path = location.pathname.replace(/^\/en(?:\/|$)/, '/');
+            location.assign(`${value === 'en' ? '/en' : ''}${path}${location.search}`);
+          }
+        } else {
+          // Maple's native handler owns persistence and theme resolution.
+          group.querySelector(`button[data-theme-preference-value="${value}"]`)?.click();
+        }
         menu.hidePopover();
         trigger.focus();
       });
@@ -101,10 +113,24 @@
     if (buttons.some((button) => !button)) return;
     let control = controls.get(group);
     if (!control || !group.contains(control.trigger)) {
-      control = mountMenu(group);
+      const language = mountMenu(group, 'language');
+      control = { ...mountMenu(group), language };
       controls.set(group, control);
     }
     const korean = document.documentElement.lang.startsWith('ko');
+    const languageLabel = korean ? '언어 선택' : 'Select language';
+    if (control.language.trigger.getAttribute('aria-label') !== languageLabel) {
+      control.language.trigger.setAttribute('aria-label', languageLabel);
+      control.language.trigger.title = languageLabel;
+      control.language.trigger.innerHTML = icon('language');
+    }
+    control.language.menu.setAttribute('aria-label', languageLabel);
+    control.language.items.forEach((item, index) => {
+      const label = index === 0 ? '한국어' : 'English';
+      const text = item.querySelector('span');
+      if (text.textContent !== label) text.textContent = label;
+      item.setAttribute('aria-checked', String(index === (korean ? 0 : 1)));
+    });
     const labels = korean ? ['시스템', '라이트', '다크'] : ['System', 'Light', 'Dark'];
     const selected = buttons.findIndex((button) => button.getAttribute('aria-pressed') === 'true');
     const current = selected < 0 ? 0 : selected;
