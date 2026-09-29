@@ -7,97 +7,45 @@
     "light": "#BBA6FF",
     "dark": "#ACA0D8"
   },
-  "appearance": {
-    "default": "dark"
-  },
+  "appearance": { "default": "dark" },
   "navigation": {
     "languages": [
       {
         "language": "ko",
         "tabs": [
           {
-            "tab": "가이드",
-            "icon": "book-open",
-            "pages": ["index", "quickstart", "product"]
-          },
-          {
-            "tab": "AI",
-            "icon": "brain",
+            "tab": "서비스",
             "groups": [
-              {
-                "group": "Agent 구성",
-                "pages": ["ai/agents", "ai/voice", "ai/tools", "ai/knowledge", "ai/variables", "ai/evaluations"]
-              }
-            ]
-          },
-          {
-            "tab": "운영",
-            "icon": "headset",
-            "groups": [
-              {
-                "group": "채널과 상담",
-                "pages": ["operations/channels", "operations/campaigns", "operations/conversations", "operations/monitoring"]
-              },
-              {
-                "group": "계정과 관리",
-                "pages": ["operations/integrations", "operations/billing", "operations/support", "operations/admin"]
-              }
+              { "group": "시작하기", "pages": ["index", "quickstart", "product"] },
+              { "group": "Agent 만들기", "pages": ["ai/agents", "ai/voice", "ai/tools", "ai/knowledge", "ai/variables", "ai/evaluations"] },
+              { "group": "배포와 운영", "pages": ["operations/channels", "operations/campaigns", "operations/conversations", "operations/monitoring"] },
+              { "group": "계정과 관리", "pages": ["operations/integrations", "operations/billing", "operations/support", "operations/admin"] }
             ]
           },
           {
             "tab": "개발자",
-            "icon": "code",
             "pages": ["developers/index", "developers/keys", "developers/calls", "developers/web-chat"]
           },
-          {
-            "tab": "변경 내역",
-            "icon": "list",
-            "pages": ["changelog"]
-          }
+          { "tab": "릴리즈노트", "pages": ["changelog"] }
         ]
       },
       {
         "language": "en",
         "tabs": [
           {
-            "tab": "Guides",
-            "icon": "book-open",
-            "pages": ["en/index", "en/quickstart", "en/product"]
-          },
-          {
-            "tab": "AI",
-            "icon": "brain",
+            "tab": "Service",
             "groups": [
-              {
-                "group": "Agent setup",
-                "pages": ["en/ai/agents", "en/ai/voice", "en/ai/tools", "en/ai/knowledge", "en/ai/variables", "en/ai/evaluations"]
-              }
-            ]
-          },
-          {
-            "tab": "Operations",
-            "icon": "headset",
-            "groups": [
-              {
-                "group": "Channels and conversations",
-                "pages": ["en/operations/channels", "en/operations/campaigns", "en/operations/conversations", "en/operations/monitoring"]
-              },
-              {
-                "group": "Account and administration",
-                "pages": ["en/operations/integrations", "en/operations/billing", "en/operations/support", "en/operations/admin"]
-              }
+              { "group": "Getting started", "pages": ["en/index", "en/quickstart", "en/product"] },
+              { "group": "Build an Agent", "pages": ["en/ai/agents", "en/ai/voice", "en/ai/tools", "en/ai/knowledge", "en/ai/variables", "en/ai/evaluations"] },
+              { "group": "Deploy and operate", "pages": ["en/operations/channels", "en/operations/campaigns", "en/operations/conversations", "en/operations/monitoring"] },
+              { "group": "Account and administration", "pages": ["en/operations/integrations", "en/operations/billing", "en/operations/support", "en/operations/admin"] }
             ]
           },
           {
             "tab": "Developers",
-            "icon": "code",
             "pages": ["en/developers/index", "en/developers/keys", "en/developers/calls", "en/developers/web-chat"]
           },
-          {
-            "tab": "Changelog",
-            "icon": "list",
-            "pages": ["en/changelog"]
-          }
+          { "tab": "Release notes", "pages": ["en/changelog"] }
         ]
       }
     ]
