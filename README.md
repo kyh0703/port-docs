@@ -8,4 +8,4 @@
 
 문서 수정 시 양쪽 언어를 함께 갱신하고 `mint validate`, `mint broken-links`를 실행한다. Mintlify GitHub 연결은 `kyh0703/port-docs` 저장소의 `main`을 사용한다. 공개 기준 주소는 `https://overthinker.mintlify.app/`이다. 이전 `.mintlify.site` 주소는 별도 배포 버전의 캐시를 제공하므로 신규 링크에 사용하지 않는다.
 
-`brand/`의 밝은·어두운 테마 로고는 `port-web/public/brand/`의 원본을 사용한다. `theme-selector.js`와 `theme-selector.css`는 Maple의 테마 버튼을 라이트·다크·시스템 드롭다운으로 표시한다. 테마 변경과 저장은 Mintlify의 기존 버튼 핸들러에 위임한다. Maple의 `data-theme-preference-*` 속성에 의존하므로 테마 업데이트 때 데스크톱·모바일에서 확인한다. 스크립트가 실행되지 않거나 필요한 버튼이 없으면 기존 버튼을 유지한다.
+`brand/`의 밝은·어두운 테마 로고는 `port-web/public/brand/`의 원본을 사용한다. `theme-selector.js`와 `theme-selector.css`는 웹의 `ThemeDropdown`과 같은 아이콘 버튼·테마별 아이콘·선택 체크를 사용한다. 브라우저 Popover API로 메뉴를 표시하고 방향키·Home·End·Enter·Escape를 지원한다. 테마 변경과 저장은 Mintlify의 기존 버튼 핸들러에 위임한다. Maple의 `data-theme-preference-*` 속성에 의존하므로 테마 업데이트 때 데스크톱·모바일에서 확인한다. 스크립트 또는 Popover API를 사용할 수 없거나 필요한 버튼이 없으면 기존 버튼을 유지한다.
