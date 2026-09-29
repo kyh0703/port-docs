@@ -13,8 +13,16 @@
         "language": "ko",
         "groups": [
           {
-            "group": "시작하기",
-            "pages": ["index"]
+            "group": "Overthinker",
+            "pages": ["index", "product"]
+          },
+          {
+            "group": "개발자",
+            "pages": ["developers/index", "developers/calls", "developers/web-chat"]
+          },
+          {
+            "group": "업데이트",
+            "pages": ["changelog"]
           }
         ]
       },
@@ -22,8 +30,16 @@
         "language": "en",
         "groups": [
           {
-            "group": "Getting started",
-            "pages": ["en/index"]
+            "group": "Overthinker",
+            "pages": ["en/index", "en/product"]
+          },
+          {
+            "group": "Developers",
+            "pages": ["en/developers/index", "en/developers/calls", "en/developers/web-chat"]
+          },
+          {
+            "group": "Updates",
+            "pages": ["en/changelog"]
           }
         ]
       }

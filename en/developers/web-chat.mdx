@@ -1,0 +1,37 @@
+---
+title: "Install web chat on your website"
+description: "Configure an allowed Origin and Public key, then add the channel's installation code"
+---
+
+Web chat runs on the page your visitors open. Use a **web-chat Public API key**, not the Private key used to create calls from your server.
+
+## Prepare the channel and key
+
+1. **Deploy an Agent to Live** in Overthinker.
+2. In **Channels → Web chat**, create an endpoint, assign the Agent and an allowed website Origin, and activate it.
+3. In **API keys → Public API keys**, create a key allowed for that endpoint and Origin. You can reuse an existing key if it already allows both.
+4. Return to **Channels → Web chat** and copy the endpoint's **installation code**. If no suitable active Public key is available, the page shows a link to issue one instead of installation code.
+
+An Origin includes the scheme, domain, and port. `https://example.com` and `https://www.example.com` are different Origins. Add the Origin of the page that will host the chat. An Agent without a Live deployment or a mismatched Origin cannot start a conversation.
+
+## Add the installation code
+
+Paste the script from the Channels page into your site's HTML. Its structure looks like this; **use the values issued in the UI** rather than inventing a hostname, endpoint ID, or key.
+
+```html
+<script src="<Overthinker origin>/web-chat/loader.js"
+        data-endpoint="<web chat public ID>"
+        data-public-key="<Public API key>"
+        async></script>
+```
+
+When a visitor opens the page from an allowed Origin, the loader displays a chat window and starts a session. The browser's Public key is not a secret, but the server still checks which Origin and endpoint it allows. Never send a Private key to the browser.
+
+## Troubleshoot startup
+
+- **No installation code:** Check that an active Public key allows this endpoint and Origin.
+- **403:** Check the page's actual Origin against the allowed Origins on both the channel and key; check that the key allows this endpoint.
+- **404:** Check that the endpoint is active and its Agent has a Live deployment.
+- **429:** Session-start requests are being limited. Stop repeatedly refreshing and try again later.
+
+Web chat starts a text conversation. A voice profile selected on the channel does not change the voice of that text chat. If you change the website's Origin or issue a new key, confirm the allowed scope on the channel and key, then copy updated installation code.

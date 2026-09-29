@@ -1,0 +1,48 @@
+---
+title: "Create outbound calls from your server"
+description: "Create a call with a Private key, avoid duplicates, and inspect its status"
+---
+
+Call this API from your server. Send a [Private key](/en/developers/) using `Authorization: Bearer` and connect your source phone number to a **Live-deployed Agent**. `agentId` and `fromNumberId` are UUIDv7 identifiers belonging to the same account. You also need available call time.
+
+## Check required variables
+
+Request `GET /api/v1/calls/requirements?agentId=<Agent UUIDv7>&fromNumberId=<phone number UUIDv7>`. The response's `data.variableNames` lists variables required by the connected Agent. `data.publishedId` and `revision` identify its current deployment. Supply required variables in the create request's `variables` field.
+
+Use `Authorization: Bearer <key>` for this endpoint and the following requests. Success responses are wrapped in `statusCode`, `message`, and `data`.
+
+## Create the call
+
+Generate a unique `Idempotency-Key` for each new attempt. If you resend an attempt, keep **both the same key and the same request body**. Replace the example identifiers, number, and key with your account's values.
+
+```http
+POST /api/v1/calls
+Authorization: Bearer <Private key>
+Content-Type: application/json
+Idempotency-Key: <unique key for this attempt>
+
+{
+  "agentId": "<Agent UUIDv7>",
+  "fromNumberId": "<connected phone number UUIDv7>",
+  "to": "+821012345678",
+  "variables": {
+    "CustomerName": "Kim"
+  }
+}
+```
+
+`to` is an international E.164 number starting with `+`. You can omit `variables` when the Agent does not require them. Values can only be strings, finite numbers, or booleans; at most 50 variables are accepted. Extra body fields such as `publishedId` or `message` are rejected.
+
+A successful request returns **201 Created** with `data.callId`, `data.conversationId`, and `data.status`. Status is one of `pending`, `uncertain`, `active`, `ended`, or `failed`. An accepted request does not establish that the recipient answered.
+
+## Inspect the result
+
+Call `GET /api/v1/calls/<callId>` with a Private key for the same account. The **200** response has the same `data` shape. `uncertain` means the dial result has not been confirmed. Do not create a new attempt with a new key: inspect the existing `callId` or replay the **original key and body** to avoid a duplicate call.
+
+- **400:** Invalid identifier, phone number, variables, or missing Idempotency-Key. Missing required variables are listed in the error detail.
+- **401/403:** Invalid credentials or a key without call permission. An MCP/A2A-only key cannot create calls.
+- **404:** Number or call not owned by this account, or no Live Agent deployment bound to the source number.
+- **409:** Same key reused with different input, insufficient call time, or a conflicting concurrent call.
+- **503:** Required phone or voice runtime is unavailable.
+
+Error responses include `statusCode`, `message`, `error`, and `data`. If an Authorization header is present, an invalid key is not replaced by browser-session authentication.

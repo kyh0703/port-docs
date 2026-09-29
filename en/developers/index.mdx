@@ -1,0 +1,24 @@
+---
+title: "Developer quickstart"
+description: "Choose the right credentials for outbound calls or embedded web chat"
+---
+
+Start by separating **calls initiated from your server** from **web chat running in a visitor's browser**. They do not share credentials.
+
+| Task | Credential | Where to store it |
+| --- | --- | --- |
+| Create and inspect outbound calls from a server | Private API key (`ot_sk_`), or an existing calls-only key (`ot_call_`) | Server-side secret store |
+| Install web chat on a website | Public API key (`ot_pk_`) allowed for that Origin and endpoint | Installation script's `data-public-key` |
+
+**Never put a Private key in browser code, a public repository, or the installation script.** An existing MCP/A2A-only key (`ot_mcp_`) cannot create calls. Manage credentials in the signed-in Overthinker **API keys** page. A new Private key's value is displayed only when issued.
+
+## Choose a request origin
+
+HTTP API paths begin with `/api/v1`. This guide does not prescribe a fixed public API hostname. For server requests, use the Origin of the Overthinker address accessible to your account and append the path from the relevant guide; make sure your server can reach that address. Do not use an internal service address or a browser's private session cookie as a server integration credential.
+
+## Choose an integration
+
+- [Create an outbound call](/en/developers/calls): prepare a connected number and deployed Agent, avoid duplicate calls, and inspect status.
+- [Install web chat](/en/developers/web-chat): configure an allowed Origin, Public key, and installation code.
+
+Outbound calling also requires an assigned number, a Live deployment, available call time, and a ready runtime. An accepted API request does not mean the recipient has answered.
