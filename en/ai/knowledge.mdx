@@ -1,0 +1,26 @@
+---
+title: "Connect documents to knowledge search"
+description: "Upload a file, create a Revision, and publish a search tool for an Agent"
+---
+
+To use a file as reference material in answers, follow **upload → wait for ready → create Revision → publish knowledge tool → attach to Agent**. Sign in and prepare a PDF, DOCX, PPTX, XLSX, MD, UTF-8 TXT, HWP, or HWPX file. Upload **one file at a time, up to 50 MiB** each.
+
+## 1. Upload and wait for ready
+
+Under **Knowledge management > Document upload**, choose a file, enter the required **Knowledge key**, and select **Register**. The key must start with a lowercase ASCII letter and contain only lowercase letters, digits, or underscores. The confirmation means processing was requested, not completed. In **Registered knowledge**, wait for the file to change from `Processing` to `Ready`.
+
+<Note>
+Do not rely on the Knowledge key entered in the upload form being retained as the search identifier. Search uses the **Revision** selected below. The **URL** and **FAQ** entry tabs are visible but disabled.
+</Note>
+
+## 2. Create a Revision and publish its tool
+
+Select one or more `Ready` documents and choose **Create revision from selected documents**. Under **Tool library > Add tool > Knowledge Search**, enter a display name, Function Name, and a description of when to search this material. Select the new **Knowledge revision** and **Save**. Saving in the library automatically creates a publication such as `v1`; check the version shown in the detail panel. A Revision fixes the documents at creation time: uploading another file does not change an existing Revision.
+
+## 3. Check a new conversation
+
+Attach the published knowledge tool to the relevant node in the [Agent editor](/en/ai/agents) and **Deploy**. In a new test conversation, ask a question covered by the file. Check the tool-execution indicator and the actual answer. To update the material, wait for `Ready`, create a new Revision, update the tool's reference in the library, and **Save**; check the newly published version. If the Agent pins a tool version, select the new version and **Deploy** the Agent again before checking a new conversation.
+
+<Note>
+If a file shows `Failed`, read its listed error, correct and re-upload the file, or try **Reindex**. HWP/HWPX extract text and tables but do not provide image OCR, original visual layout, or original page-number citations. Corrupt or password-protected files may fail processing.
+</Note>

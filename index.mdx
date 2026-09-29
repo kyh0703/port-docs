@@ -1,18 +1,23 @@
 ---
 title: "Overthinker 문서"
-description: "서비스 사용법, 개발자 연동, 제품 변경 사항을 살펴봐요"
+description: "AI Agent와 전화·웹 상담을 준비하고, 운영하고, 연동하는 방법"
 ---
 
-전화와 웹에서 고객 문의가 시작될 때, Overthinker는 AI Agent의 응대부터 상담원 연결과 대화 기록까지 한 흐름으로 이어줘요. 필요한 일을 골라 바로 시작해요.
+Overthinker에서 Agent를 Live로 배포한 뒤 전화와 웹챗에 연결해요. 이 문서는 첫 상담을 시작하는 순서부터 대화 기록, 운영, 외부 연동까지 실제 사용 흐름별로 안내해요.
 
-## 상담을 어떻게 운영할까요?
+<Columns cols={2}>
+  <Card title="첫 상담 시작하기" icon="play" href="/quickstart">
+    Agent 작성 → Live 배포 → 채널 연결 → 실제 대화 확인 순서로 진행해요.
+  </Card>
+  <Card title="Agent와 AI" icon="robot" href="/ai/agents">
+    응대 기준, 도구, 지식, 음성 설정과 평가를 준비해요.
+  </Card>
+  <Card title="상담 운영" icon="headset" href="/operations/channels">
+    전화·웹챗, 발신 캠페인, 고객 기록, 모니터링과 요금을 확인해요.
+  </Card>
+  <Card title="개발자 연동" icon="code" href="/developers/">
+    서버 발신 API와 웹챗 설치에 맞는 인증 방식부터 선택해요.
+  </Card>
+</Columns>
 
-[서비스 소개](/product)에서 Agent를 Live로 배포하고 전화번호·웹챗에 연결하는 순서를 확인해요. 대화가 끝난 뒤 기록과 고객 정보를 확인하는 방법도 함께 살펴볼 수 있어요.
-
-## 우리 서비스에 어떻게 연결할까요?
-
-[개발자 문서](/developers/)에서 서버용 인증키와 브라우저용 공개 키의 차이를 확인해요. 사용할 채널에 맞는 연동 방법으로 이동할 수 있어요.
-
-## 무엇이 바뀌었을까요?
-
-[릴리즈 노트](/changelog)에는 실제 서비스에 반영됐다고 확인한 변경만 날짜와 함께 기록해요. 구현을 마쳤지만 아직 배포하지 않은 기능은 싣지 않아요.
+변경 사항은 [릴리즈 노트](/changelog)에서 확인해요. 실제 서비스 적용이 확인된 항목만 기록해요.

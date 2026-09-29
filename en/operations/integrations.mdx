@@ -1,0 +1,28 @@
+---
+title: "Connect Google apps"
+description: "Connect Gmail, Sheets, or Calendar and restore tools after changing accounts"
+---
+
+Signed-in users can connect their own Google account separately for Gmail, Google Sheets, and Google Calendar. Choose the app you need first. Its button is enabled only when Google OAuth has been configured for the service.
+
+<Steps>
+  <Step title="Connect an account">
+    Open **Integrations & keys → My Google account** (`/integrations`) in the app and select **Connect account** for your app. Review the account and requested permissions on Google's consent screen.
+  </Step>
+  <Step title="Check the status">
+    Return to the app and check for **Account connected** on that app. **Connection in progress**, **Connection expired**, or **Connection failed** does not mean the account is ready to use.
+  </Step>
+  <Step title="Use the connection in a tool">
+    Select **Create tools**, create a tool for the connected app, and save it. Saving from the tool library creates a published version; check the version shown. Attach that tool to an Agent, deploy the Agent to Live, then check the action in a new conversation. **Publishing the tool does not change the Agent's Live deployment.** See [Tools](/en/ai/tools).
+  </Step>
+</Steps>
+
+## Reconnect or switch accounts
+
+For an expired or failed connection, select **Reconnect account** and approve access again. To switch an already connected account, select **Disconnect account**, confirm the disconnect, then connect the new account; disconnecting revokes the old authorization. If the app says it is not configured or the connect button is disabled, ask your service administrator about OAuth setup.
+
+<Warning>
+  Reconnecting does not transfer the new account's authorization to an existing Google tool publication. Create and save a tool for the new connection, verify its published version, replace the Agent's tool, deploy the Agent to Live, and check the action in a new conversation.
+</Warning>
+
+**Provider API keys** are not Google account connections: only admins can register or replace shared model and voice provider keys. The separate **API keys** screen lets account owners manage server-only Private keys (`ot_sk_`) and browser WebChat Public keys (`ot_pk_`). Never put a Private key in a browser.

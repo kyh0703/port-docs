@@ -1,0 +1,24 @@
+---
+title: "Create and run an outbound campaign"
+description: "Preview consent-backed CSV recipients, create a draft, then start and review calls"
+---
+
+You need an [Agent published to Live](/en/ai/agents) and an **active outbound number bound to that Agent**. Verify each recipient's consent yourself and prepare a reference to its evidence before importing recipients.
+
+## Preview the CSV, then start the campaign
+
+1. Under **Outbound campaigns → New campaign**, enter a name and choose the Agent, outbound number, and recipient CSV. The CSV must have **one of** `to` or `number`, plus `consentEvidence`. Each row needs an E.164 phone number and a nonblank consent evidence reference. You can add `timezone` and columns for required Agent variables. This is only a format example; replace the number and evidence before calling anyone.
+
+   ```csv
+   to,consentEvidence,timezone
+   +12025550123,opt-in-record-123,America/New_York
+   ```
+
+2. Set the **campaign timezone**, a daily calling window within 09:00–18:00, and optionally a **scheduled start**. The scheduled time input uses your device's timezone. Select **Preview recipients** and check the publication ID, required variables, valid count, and invalid rows. Fix every error and preview again.
+3. Select **Create reviewed campaign** to save a draft. This does **not** place calls. Open the campaign detail, check the number, schedule, publication, and recipients again, then select **Launch campaign** to run or schedule it. Review progress, attempts, per-recipient status, and **View conversation** when available.
+
+<Note>
+A campaign accepts **1–100 recipients**; duplicate numbers or missing consent references are rejected. The service does not validate the legal validity of consent. At most one campaign call can be in flight per account. Before each call, it checks the recipient's local timezone against both your configured window and the 09:00–18:00 product limit. Local law may be stricter.
+</Note>
+
+The campaign **pins the Live publication at creation**. Republishing the Agent or changing the number binding does not move this campaign to the new version and may pause it. There is no automatic redial. **Pause/Cancel** affects calls not yet started; it does not hang up calls already in progress.

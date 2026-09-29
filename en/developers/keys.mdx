@@ -1,0 +1,30 @@
+---
+title: "Choose and manage API keys"
+description: "Separate server-only Private credentials from browser-only Public web chat keys"
+---
+
+Choose a key based on **who sends the request**. After signing in, create and revoke keys under **API Keys**.
+
+| Used by | Key | Scope | Storage |
+| --- | --- | --- | --- |
+| Your server | Private `ot_sk_` | Outbound HTTP calling API, MCP and A2A authentication | Server secret store |
+| Existing server integrations | `ot_call_` / `ot_mcp_` | Outbound HTTP calls / MCP and A2A authentication only, respectively | Server secret store |
+| Your website | Public `ot_pk_` | Browser sessions for specified web chat endpoints and Origins | Web chat installation code |
+
+<Note>
+A key's authentication scope does not guarantee that a runtime feature is enabled. **MCP calling tools are disabled in the current deployment**; use the [HTTP calling API](/en/developers/calls) for server calls. External A2A task execution is not supported either.
+</Note>
+
+## Create a credential for server calls
+
+In **API Keys → Private API Keys**, select **Issue token**. The full key is visible only immediately after issuance; put it in your server's secret store. Send it as `Authorization: Bearer <Private key>`. An existing `ot_mcp_` key cannot initiate calls. A Public key cannot authenticate outbound calls or MCP.
+
+If a key is compromised, **rotate** or **revoke** it. Do not assume that the old key still works after rotation. Update the value on your server, then check [call requirements](/en/developers/calls) with the new key. Never place a Private key in browser code, public repositories, or an HTML embed.
+
+## Create a credential for web chat
+
+1. In **Channels → Web chat**, create an endpoint with a Live Agent, the exact allowed website Origin, and an available voice profile. The profile does not affect current text chat.
+2. Under **API Keys → Public API Keys**, select a name, allowed Origins, and the endpoints that this key may access. An Origin is the scheme and host, plus port when applicable, for example `https://example.com`.
+3. Copy the installation code from **Channels → Web chat** and put it on a page served from that allowed Origin. See [Install web chat](/en/developers/web-chat) for a verification checklist.
+
+Revoking the key blocks new sessions using it. If you change the key or site Origin, check both the endpoint and the key's allowed Origins, then copy updated installation code. Public keys are not secrets; still restrict them to the minimum necessary endpoints and Origins.

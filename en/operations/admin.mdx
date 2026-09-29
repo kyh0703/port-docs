@@ -1,0 +1,23 @@
+---
+title: "Review admin operations"
+description: "Check pricing, promotions, inquiries, provider settings, and operational records with an admin account"
+---
+
+Sign in with the **admin role** to use these screens. Regular users cannot edit pricing, create promotion codes, change inquiry statuses, or configure shared provider keys and voice runtime settings.
+
+| What to check | Action in the app | Expected result |
+| --- | --- | --- |
+| Overview | Open **Dashboard** (`/admin/dashboard`). | Four counts: today's (KST) and total signups and conversations. This is not worldwide customer analytics. |
+| Account lookup | Search **User management** (`/admin/users`) by a **complete email, E.164 phone number, or user UUID**; filter by role and email verification and open a user's details. | View account, verification, and signup data; this page does not edit roles or user records. |
+| Inquiries | In **Inquiry management** (`/admin/inquiries`), filter by all, new, in progress, or resolved. Open an inquiry, change its status, and select **Save status**. | **Inquiry status saved.** appears. If another admin changed it first, select **Reload latest details** before editing again. |
+| Alimtalk sending | Under **알림톡 입력 관리** (`/admin/form-collections`), check server readiness and save the **새 알림톡 발송 허용** setting. | OFF by default. You cannot save ON until the server is configured. ON permits sends; it does not prove delivery. Previously issued forms remain submittable until expiry even when OFF. Controls on this page are in Korean. |
+| Support knowledge | In **상담 지식베이스** (`/admin/support-knowledge`), upload one shared support document at a time (up to 50 MB), reindex, or delete it. | A successful upload requests processing; check its status and any errors in the list. This content serves the public support AI, not account-specific [Agent knowledge](/en/ai/knowledge). Controls are in Korean. |
+| Shared prompts | Review system guardrails, Handoff and Supervisor rules, and voice/keypad prompts under **Prompt settings** (`/admin/prompt-config`). | Check the composed preview, then **Save changes**. Changes apply to new conversations. These shared settings are separate from an individual Agent's instructions. |
+| Calling-time pricing | In **Pricing management** (`/admin/pricing`), set the KRW-per-minute price and minimum, maximum, and increment of purchasable minutes; select **Save pricing**. | **Pricing settings saved.** appears. The minimum and maximum must be multiples of the increment. If another admin changed it, select **Reload latest settings** before editing again. The change applies to new orders, not existing orders or balances; it does not enable payments. |
+| Promotions | In **Promotion code management** (`/admin/promotion-codes`), create a percentage or fixed-amount discount with a start/end time and active state. | **Promotion code registered.** appears and the listed code can be enabled or disabled. A customer can verify a discount at checkout only where payments are enabled. |
+| Provider keys and voice | In **Integrations & keys** (`/integrations`), register or replace **Provider API keys** and check for **Configured**. Under **Voice runtime management** (`/admin/voice-runtime`), review and save STT/TTS options, defaults, and voices. | Default STT/TTS options must be enabled, and the default voice must be compatible with an enabled TTS. Only key status, not plaintext, is shown. This differs from Google OAuth and customer API keys. |
+| Execution and costs | Filter **LLM usage audit** (`/admin/llm-audit`) by conversation ID, model, or status. Select a conversation and open **Cost details** under **Conversation costs** (`/admin/conversation-costs`). | Check request and cost states separately. Missing provider usage is not zero usage, and estimated costs are not final billed amounts. |
+
+<Note>
+  Admin pricing and promotion screens do not prove customer payments are active. Check the actual state described in [Account and usage](/en/operations/billing) before directing users to purchase time. **Live conversations** (`/monitoring`) shows calls owned by the signed-in account; it is not an all-account admin monitoring screen.
+</Note>

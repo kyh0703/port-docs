@@ -1,0 +1,30 @@
+---
+title: "Create and connect tools"
+description: "Publish a tool version, attach it to an Agent, and check an execution"
+---
+
+To use a tool, sign in, publish its version under **Tool library**, and attach it to the appropriate node of an [Agent](/en/ai/agents). For an external service, have its endpoint and any required credentials ready.
+
+## 1. Create a tool
+
+Under **Tool library > Add tool**, choose a type, configure it, and **Save**.
+
+| Type | What to configure and expect |
+| --- | --- |
+| REST API | Set a Function Name, description, method (GET/POST/PUT/PATCH/DELETE), endpoint URL, and input JSON Schema. Output Schema is optional. Choose no auth, API key (`X-API-Key`), or Bearer (`Authorization: Bearer …`), and enter the secret if required. |
+| MCP · A2A | Connect an **external MCP server** (SSE or Streamable HTTP) or an **external Agent Card URL** as a tool. Supply its endpoint and no auth/API key/Bearer credentials. This *consumes* an external service; it does not expose your Overthinker Agent for execution by an external A2A client. |
+| Google apps | First connect the app under **Integrations & keys > My Google account**. Sheets only appends rows to the spreadsheet ID and range fixed in the publication (up to 100 rows and 100 cells per row per request). Calendar fixes a calendar ID and time zone and offers either create event or check availability. Dates require an RFC3339 UTC offset matching that zone, and intervals cannot exceed 90 days. Gmail includes actions that read and send mail **and** modify or delete it; review consent, scopes, and usage instructions. |
+| Knowledge search | First create a [knowledge Revision](/en/ai/knowledge). |
+| Human transfer | Set a phone number or SIP URI. This tool works on **configured SIP voice calls**, not as automatic phone transfer from a web chat. |
+
+## 2. Publish a version
+
+In the **Tool library**, **Save** applies a new tool's Draft settings and automatically creates a publication such as `v1`. Saving edits in that same detail panel publishes another `vN`. Check the version number at the top of the detail panel. A failed save or a Draft without a publication cannot be attached to an Agent. If you edit on the separate tool-detail route (`/tools/<toolId>`), changes autosave as a Draft there; use **Publish** and enter a version name to publish them.
+
+## 3. Attach and verify
+
+In the Agent editor, select the published tool on the node that needs it; choose **Latest** or a specific `vN` under **Version**. Latest uses the currently published tool version in new conversations; a pinned version stays on that release. **Deploy** the Agent, start a fresh test conversation, and ask something that requires the tool. Check the test transcript for the tool name and **completed/failed** status, then check the response or external service result. A test revision may differ from Live, so verify the customer channel in a **new conversation** too.
+
+<Note>
+If execution fails, check both tool publication and Agent Live deployment, plus the endpoint and credentials. Disconnecting or reconnecting a Google account does not transfer an older tool publication to the new grant: create a tool for the new connection, publish it, and attach it again.
+</Note>

@@ -1,24 +1,24 @@
 ---
-title: "Run phone and web support in one place"
-description: "Prepare an Agent, connect a channel, and review conversations in Overthinker"
+title: "What you can do with Overthinker"
+description: "Find the right guide from Agent setup to customer conversations and operations"
 ---
 
-When phone and web inquiries live in different places, your team has to reconstruct what a customer already said. Overthinker lets you define how an AI Agent responds, connect it to phone or web chat, and review conversations in one place. A human agent can read the conversation before taking over when needed.
+Overthinker connects **Agent setup → Live deployment → phone or web chat → conversation review**. Phone and web chat can use the same Agent, but web chat currently runs **text conversations**. Automatic transfer to a human by phone requires a configured SIP voice call.
 
-## Prepare an Agent
+| Goal | Start here | What to check |
+| --- | --- | --- |
+| Build, test, and publish an Agent | [Create and publish an Agent](/en/ai/agents) | The current Live version and the result of a new conversation |
+| Adjust voice and conversation behavior | [Voice profiles and settings](/en/ai/voice) | The profile assigned to a channel; changes apply to future voice sessions |
+| Connect tools and reference material | [Tools](/en/ai/tools) · [Knowledge](/en/ai/knowledge) | Tool conditions and searchable documents |
+| Supply values and check responses | [Variables](/en/ai/variables) · [Evaluations](/en/ai/evaluations) | Inputs at conversation start and test results |
+| Receive phone and web chat inquiries | [Channels](/en/operations/channels) | A connected number or chat on an allowed site |
+| Call a list of recipients | [Outbound campaigns](/en/operations/campaigns) | CSV preview and per-recipient call status |
+| Review responses and prepare follow-up | [History and customers](/en/operations/conversations) | Transcript, status, and prior conversations |
+| Watch an active call | [Live conversations](/en/operations/monitoring) | Your account's call state and live transcript |
+| Connect external apps | [Google integrations](/en/operations/integrations) | Your connection state and app tool permissions |
+| Check account and plan | [Account and usage](/en/operations/billing) | Plan, balance, and usage history |
+| Set privacy or send an inquiry | [Settings and support](/en/operations/support) | Future conversation policy or inquiry submission |
+| Manage the service as an admin | [Administration](/en/operations/admin) | Pricing, inquiries, and runtime controls for authorized accounts |
+| Integrate from a server or website | [Developer quickstart](/en/developers/) | Server calling API or web chat installation code |
 
-Set the Agent's role, greeting, reference knowledge, and tools. **Deploy it to Live** before you expect changes to affect new conversations on a connected phone number or web chat. Editing a draft alone does not update the deployed Agent.
-
-Voice-call settings are separate from the Agent's response instructions. Changes to speech recognition, voice, interruptions, or call limits apply to conversations started afterward. Calls already in progress keep their existing settings.
-
-## Connect a channel
-
-**Phone:** In Channels, assign an available phone number to a deployed Agent. Disconnecting a number prevents new inbound conversations on that number.
-
-**Web chat:** In Channels, create a web chat endpoint and set both an allowed website Origin and a Live-deployed Agent. Activate it, then add the displayed installation code to the allowed site. An unapproved Origin or an undeployed Agent cannot be activated.
-
-## Review the conversation
-
-Use conversation history to read the transcript and status before the next interaction. Customer management can link earlier conversations by phone number or visitor ID. **Customer memory**, which lets an Agent use facts confirmed in previous conversations, must be enabled separately.
-
-To start calls from your server or install web chat on a website, see the [developer guides](/en/developers/).
+For an end-to-end walkthrough, [start your first conversation](/en/quickstart). Editing a draft does not change the currently running Agent. A test revision may also differ from Live: use **Deploy**, then check the result with a new conversation.

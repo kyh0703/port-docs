@@ -1,44 +1,101 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "theme": "mint",
+  "theme": "maple",
   "name": "Overthinker",
   "colors": {
     "primary": "#6545A7",
-    "light": "#625582",
+    "light": "#BBA6FF",
     "dark": "#ACA0D8"
+  },
+  "appearance": {
+    "default": "dark"
   },
   "navigation": {
     "languages": [
       {
         "language": "ko",
-        "groups": [
+        "tabs": [
           {
-            "group": "Overthinker",
-            "pages": ["index", "product"]
+            "tab": "가이드",
+            "icon": "book-open",
+            "pages": ["index", "quickstart", "product"]
           },
           {
-            "group": "개발자",
-            "pages": ["developers/index", "developers/calls", "developers/web-chat"]
+            "tab": "AI",
+            "icon": "brain",
+            "groups": [
+              {
+                "group": "Agent 구성",
+                "pages": ["ai/agents", "ai/voice", "ai/tools", "ai/knowledge", "ai/variables", "ai/evaluations"]
+              }
+            ]
           },
           {
-            "group": "업데이트",
+            "tab": "운영",
+            "icon": "headset",
+            "groups": [
+              {
+                "group": "채널과 상담",
+                "pages": ["operations/channels", "operations/campaigns", "operations/conversations", "operations/monitoring"]
+              },
+              {
+                "group": "계정과 관리",
+                "pages": ["operations/integrations", "operations/billing", "operations/support", "operations/admin"]
+              }
+            ]
+          },
+          {
+            "tab": "개발자",
+            "icon": "code",
+            "pages": ["developers/index", "developers/keys", "developers/calls", "developers/web-chat"]
+          },
+          {
+            "tab": "변경 내역",
+            "icon": "list",
             "pages": ["changelog"]
           }
         ]
       },
       {
         "language": "en",
-        "groups": [
+        "tabs": [
           {
-            "group": "Overthinker",
-            "pages": ["en/index", "en/product"]
+            "tab": "Guides",
+            "icon": "book-open",
+            "pages": ["en/index", "en/quickstart", "en/product"]
           },
           {
-            "group": "Developers",
-            "pages": ["en/developers/index", "en/developers/calls", "en/developers/web-chat"]
+            "tab": "AI",
+            "icon": "brain",
+            "groups": [
+              {
+                "group": "Agent setup",
+                "pages": ["en/ai/agents", "en/ai/voice", "en/ai/tools", "en/ai/knowledge", "en/ai/variables", "en/ai/evaluations"]
+              }
+            ]
           },
           {
-            "group": "Updates",
+            "tab": "Operations",
+            "icon": "headset",
+            "groups": [
+              {
+                "group": "Channels and conversations",
+                "pages": ["en/operations/channels", "en/operations/campaigns", "en/operations/conversations", "en/operations/monitoring"]
+              },
+              {
+                "group": "Account and administration",
+                "pages": ["en/operations/integrations", "en/operations/billing", "en/operations/support", "en/operations/admin"]
+              }
+            ]
+          },
+          {
+            "tab": "Developers",
+            "icon": "code",
+            "pages": ["en/developers/index", "en/developers/keys", "en/developers/calls", "en/developers/web-chat"]
+          },
+          {
+            "tab": "Changelog",
+            "icon": "list",
             "pages": ["en/changelog"]
           }
         ]

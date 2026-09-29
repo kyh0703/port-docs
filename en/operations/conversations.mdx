@@ -1,0 +1,24 @@
+---
+title: "Review conversations and customer history"
+description: "Inspect transcripts and customer timelines, or join an active voice call"
+---
+
+Review an interaction in **Conversation history** alongside its **Customer** record. If a person needs to join an ongoing call, open that conversation's detail.
+
+## Inspect a conversation
+
+1. In **Conversation history**, choose a status, narrow by date, sentiment, or who ended the call, or search the title, latest turn, or saved summary. Search and some filters apply to **pages already loaded**; load more if a record is missing.
+2. Open a conversation to read its transcript and ending details. Expand **Call information · analysis · cost** or **Full execution performance · model cost** for more context. If a customer is linked, select **View customer**.
+3. If a finished, published conversation lacks a summary or customer sentiment, select **Start analysis** or **Retry analysis**. Results update while processing. Active conversations are not analyzed here; analysis can be skipped or fail if meaningful customer speech is missing or the transcript is too long.
+
+## Follow a customer's timeline
+
+Under **Customers**, search by name or identifier, or select **Add customer** and enter a name or an identifier such as a phone number, email, or external ID. On the customer detail, edit the name, notes, or customer attributes. Open prior phone or web chat conversations from the **conversation timeline**. Do not assume phone and web visitor identities are automatically merged into one customer.
+
+In **Customer memory** on the customer detail, choose an Agent to add or delete a **lasting fact** or **recent context** manually. Turn on that Agent's **Customer memory** switch to extract memories from finished conversations for **future interactions**. Customer linking and history recording do not depend on that switch. Automatic extraction requires a linked, published conversation that has ended and contains meaningful customer speech; it runs asynchronously. Memories belong to the selected Agent, not to every Agent on the account.
+
+## Bring a person into a call
+
+- **Agent handoff** in the [Agent editor](/en/ai/agents) routes between AI Agent nodes. It does not call a person.
+- For **automatic human transfer**, create a **Transfer to human** tool under **Tools** with its trigger condition, phone number or SIP URI, ringing timeout, and immediate or confirm-before-connect mode. Attach it to an Agent node and publish to Live. It works only in an **active, AI-controlled SIP voice call**. In confirm-before-connect mode, the human can accept or reject after a private briefing by voice, keypad, or on the owner's conversation detail under **SIP transfer (SIP 전환)**. On rejection or failure, the system attempts to restore the AI; after completion the call is in human mode. This SIP transfer is not available for web chat, text, or WebRTC test calls.
+- For **manual participation**, go to **Conversation history → active voice conversation → Call information · analysis · cost → Join call (통화 참여)** and allow microphone access. Once your web participant is connected, an active SIP customer is present, and the call is still in AI mode, select **Switch to direct call (직접 통화로 전환)** to take over. You can also invite a third party by calling through an active number bound to the same publication. You cannot join an ended call.

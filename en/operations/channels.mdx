@@ -1,0 +1,24 @@
+---
+title: "Set up phone and web chat channels"
+description: "Connect a Live Agent to a phone number or website and check the first conversation"
+---
+
+Before opening a channel to customers, [publish your Agent to Live](/en/ai/agents) and prepare an **available voice profile**. Saving a draft does not update a running channel. New conversations use the current Production publication.
+
+## Connect a phone number and place a call
+
+1. Go to **Channels → Phone numbers**, choose the Agent and voice profile (**음성 프로필**), and select **Connect phone number**. If you already have a number, set its **Target** and **음성 프로필**.
+2. Check that the number shows an **active** status and a target, then call it to verify a new inbound conversation. A usable number must first be assigned to your account; you cannot purchase or register one on this screen.
+3. For a single outbound call, select **Make a call** on the same screen. Choose a Live Agent and an active outbound number bound to that Agent. Enter the destination in E.164 format (`+` and country code) and any variables required by the publication. Check the pending, connected, ended, or failed status; if a conversation was created, open **View conversation**.
+
+Unbinding a number moves it to **reserved**, so it stops accepting new inbound calls. If an outbound number is missing, check its active assignment and the Agent's Live publication. Treat **Call outcome needs review** as unknown rather than success; check its state before considering another call. Starting a phone call requires available call time.
+
+## Connect web chat to a site
+
+1. Under **Channels → Web chat**, enter a name and the site's exact **Allowed origin**, then select a Live Agent and voice profile (**음성 프로필**) and choose **Create web chat**. An Origin includes scheme, hostname, and port: `https://example.com` differs from `https://www.example.com`.
+2. Under **API keys → Public API keys**, create an `ot_pk_` key that allows this endpoint and Origin. Copy the **Install code** shown under **Channels → Web chat** into the allowed site's HTML. If there is no installation code, check the key's endpoint and Origin scope.
+3. Open the allowed site, launch the chat widget, and send text to check for a response. If the conversation cannot start, check that the endpoint is active, the Agent has a Live publication, and the page's actual Origin matches both channel and key settings.
+
+<Note>
+Web chat is currently **text-only**. The voice profile is required during setup but does not produce audio in web chat. Put only the Public key in browser code, never a server Private key. For installation details, see the [web chat guide](/en/developers/web-chat).
+</Note>

@@ -1,0 +1,42 @@
+---
+title: "Create and publish an Agent"
+description: "Build an Agent manually or from an AI draft, test it, and check the current Live revision"
+---
+
+Sign in and open **Agents** (`/agents`) in the app. Editing a draft does not change customer conversations. Use **Deploy** to set the current Live revision, then check it in a new conversation.
+
+## 1. Choose how to create the Agent
+
+Select **Add Agent**, then choose one of these paths.
+
+| Path | What to do | Result |
+| --- | --- | --- |
+| **Create manually** | Enter a name, choose **Supervisor** or **Handoff** mode, and create the Agent. | An empty Agent opens in the editor. |
+| **Generate an AI draft** | Enter the business goal and execution model, choose **No tools** or **Select tools manually**, then generate a draft. Review its name, nodes, routes, and warnings before choosing **Create from this draft**. | You get an editable **Handoff draft**. The AI generator does not create Supervisor Agents or select tools automatically. |
+
+## 2. Define the roles and routes on the canvas
+
+Add and connect nodes. Select each node to set its name, execution model, system prompt, and any [tools](/en/ai/tools). You can add a greeting to the entry node. Select a connection to edit its routing properties on the right.
+
+- **Supervisor**: Connect a supervisor to specialist nodes and set each **relationship description** and `Context`. The supervisor delegates a task and receives a completion summary from the specialist. `Conversation` passes prior conversation context; `None` does not.
+- **Handoff**: Connect an entry node to a target, then set the **Condition** and context passed to it. Optionally set start, completion, failure, or delay messages and Parameters. When the condition matches, **another Agent node takes over the conversation**.
+
+<Note>
+Handoff transfers control between Agent nodes, not to a human on the phone. Human transfer requires a separate configured SIP voice call; the human-transfer tool does not run in the editor's text test or in web chat.
+</Note>
+
+## 3. Test, then publish Live
+
+| State | How it is created | Does it affect customers? |
+| --- | --- | --- |
+| **Draft** | Edit the canvas. Changes are saved to the server draft when preparing a test or deploying. **Discard** restores the last saved draft. | No. |
+| **Test revision** | After the first deployment, **Test** in the editor saves the current draft and creates a pinned revision for a text conversation. | No; it does not change the current Live revision. |
+| **Current Live** | **Deploy** a new revision, or select an active previous revision in **Deployment management**. | Yes, for new conversations. |
+
+Complete required settings and use **Deploy** once before testing in the editor. Then select **Test**, enter any required prompt-variable values, ask a question, and review the transcript, participating/transitioned nodes, and execution records. When ready, use **Deploy** again. Check the **Current Live** badge in Deployment management and the [production Live test](/en/ai/evaluations), then start a new conversation through a [channel](/en/operations/channels). A successful editor test never publishes automatically.
+
+## If deployment is blocked
+
+- Check each node's name, prompt, and execution model, as well as the entry node and connections. Supervisor needs one supervisor, at least one specialist, and a description for each relationship. In Handoff, every node must be reachable from the entry node; each route needs a Condition and valid context.
+- Voice Agent publication supports OpenAI-family execution models only. If an API tool URL variable has no value source, bind it or review the warning and explicitly confirm deployment.
+- If there is no Live test target, check Deployment management. A test-only revision needs **Deploy** or promotion of an active revision to become Live.

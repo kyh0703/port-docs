@@ -1,0 +1,26 @@
+---
+title: "Start your first conversation"
+description: "Set up an Agent, connect a channel, and check the resulting conversation"
+---
+
+To start serving customers, follow **create an Agent → publish to Live → connect a channel → check the conversation**. Saving a draft does not publish it. Republish changes before expecting them to appear in new conversations.
+
+## 1. Prepare an Agent
+
+After signing in, create an Agent under **Agents**. Define what it handles, its greeting and response instructions, and the [knowledge](/en/ai/knowledge) or [tools](/en/ai/tools) it needs. Use **Deploy** to publish the first Live version. You can then run a text test in the editor. A later test revision is not Live; deploy again to make edits available to customer channels.
+
+See [Create and publish an Agent](/en/ai/agents) for the detailed flow.
+
+## 2. Connect a customer channel
+
+In **Channels**, connect an available phone number to the Live Agent and an available voice profile. Creating web chat also requires an Agent, allowed Origin, and voice profile, although the profile does not affect current text chat. Create a Public key allowed for that chat and Origin under **API Keys**, then put the installation code on the site. You need a number for calls, and chat cannot start from an unapproved Origin.
+
+See [Phone and web chat channels](/en/operations/channels) for channel setup and verification. To initiate calls from your server instead, see [Developer quickstart](/en/developers/).
+
+## 3. Verify a real conversation
+
+Place a call or open the chat on an allowed website and ask a question. For a voice call, use [Live conversations](/en/operations/monitoring) to inspect the connection and transcript. After either a call or a chat ends, review [conversation history and customers](/en/operations/conversations). Publishing an Agent or accepting a call request does not by itself mean a customer was connected.
+
+<Note>
+Voice configuration changes do not alter calls already in progress. Check Agent edits and channel changes with a **new** conversation.
+</Note>
