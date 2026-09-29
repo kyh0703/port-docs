@@ -2,6 +2,11 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Overthinker",
+  "fonts": {
+    "family": "Pretendard Variable",
+    "source": "/fonts/PretendardVariable.woff2",
+    "format": "woff2"
+  },
   "logo": {
     "light": "/brand/overthinker-logo-light.png",
     "dark": "/brand/overthinker-logo-dark.png"
