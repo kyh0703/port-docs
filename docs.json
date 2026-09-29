@@ -12,9 +12,12 @@
     "dark": "/brand/overthinker-logo-dark.png"
   },
   "colors": {
-    "primary": "#6545A7",
-    "light": "#BBA6FF",
-    "dark": "#ACA0D8"
+    "primary": "#625582",
+    "light": "#D3C9F1",
+    "dark": "#6545A7"
+  },
+  "background": {
+    "color": { "light": "#FFFFFF", "dark": "#272729" }
   },
   "appearance": { "default": "dark" },
   "navigation": {

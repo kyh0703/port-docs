@@ -1,0 +1,99 @@
+/* Surface and text colors match port-web's light/dark palette. */
+#pagination {
+  --pager-bg: #fafafc;
+  --pager-hover: #f5f5f7;
+  --pager-border: #e0e0e0;
+  --pager-text: #1d1d1f;
+  --pager-muted: #6e6e73;
+  --pager-accent: #625582;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
+}
+.dark #pagination {
+  --pager-bg: #2a2a2c;
+  --pager-hover: #252527;
+  --pager-border: rgb(255 255 255 / 14%);
+  --pager-text: #ffffff;
+  --pager-muted: #cccccc;
+  --pager-accent: #d3c9f1;
+}
+#pagination > a {
+  display: grid;
+  grid-template-columns: 16px minmax(0, 1fr) 16px;
+  grid-template-rows: auto auto;
+  align-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  min-width: 0;
+  min-height: 88px;
+  padding: 16px 20px;
+  border: 1px solid var(--pager-border);
+  border-radius: 14px;
+  background: var(--pager-bg);
+  color: var(--pager-text);
+  text-decoration: none;
+  transition: border-color 150ms, background-color 150ms;
+}
+#pagination > a:hover {
+  background: var(--pager-hover);
+  border-color: var(--pager-accent);
+}
+#pagination > a:focus-visible {
+  outline: 2px solid var(--pager-accent);
+  outline-offset: 3px;
+}
+#pagination [data-component-part="pagination-next"] { grid-column: 2; }
+#pagination > a:only-child { grid-column: 1 / -1; }
+/* Keep native links and labels; remove only the nested strip presentation. */
+#pagination [data-component-part="pagination-next"] div:not([data-component-part="pagination-title"]) {
+  display: contents;
+}
+#pagination [data-component-part="pagination-description"] { display: none; }
+#pagination [data-component-part="pagination-label"] {
+  grid-column: 2;
+  grid-row: 1;
+  margin: 0;
+  color: var(--pager-muted);
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+#pagination [data-component-part="pagination-chevron"] {
+  grid-column: 1;
+  grid-row: 1;
+  width: 12px;
+  height: 12px;
+  margin: 0;
+  color: var(--pager-muted);
+}
+#pagination .ot-pagination-title,
+#pagination [data-component-part="pagination-title"] {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  margin: 0;
+  padding: 0;
+  color: var(--pager-text);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+#pagination [data-component-part="pagination-next"] [data-component-part="pagination-label"],
+#pagination [data-component-part="pagination-next"] [data-component-part="pagination-title"] { text-align: right; }
+#pagination [data-component-part="pagination-next"] [data-component-part="pagination-chevron"] { grid-column: 3; }
+@media (max-width: 480px) {
+  #pagination { grid-template-columns: minmax(0, 1fr); gap: 8px; }
+  #pagination [data-component-part="pagination-next"] { grid-column: 1; }
+  #pagination > a { min-height: 80px; padding: 14px 16px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  #pagination > a { transition: none; }
+}
