@@ -15,3 +15,5 @@
 제목·본문·메뉴는 웹과 동일한 Pretendard Variable을 사용한다. `docs.json`은 로컬 `fonts/PretendardVariable.woff2`를 지정하고 `fonts.css`는 원본의 가변 굵기 범위(45–920)를 선언한다. 코드의 Maple 고정폭 폰트는 변경하지 않는다. 배포 폰트의 SIL Open Font License는 `fonts/LICENSE.txt`에 포함한다.
 
 문서 배경·강조색과 사용자 메뉴는 `port-web/src/app/globals.css`의 흰색·차콜·보라색 토큰에 맞춘다. `pagination.css`는 기존 이전·다음 링크를 동일 폭 카드로 표시하고 설명을 숨긴다. 좁은 화면에서는 세로로 배치한다. `pagination.js`는 Maple의 이전 링크 `aria-label`에서 문서 제목을 읽어 보완하며 링크 주소·클릭 동작은 변경하지 않는다. Maple 업데이트 시 한영 제목, 첫·마지막 페이지와 모바일 배치를 확인한다.
+
+릴리즈노트 사이드바는 연도 그룹 아래 월별 페이지를 최신순으로 나열한다. 현재 `changelog.mdx`와 `en/changelog.mdx`는 2026년 9월 기록이며 기존 URL을 유지한다. 새 달은 별도 한영 페이지로 만들고 해당 연도 그룹의 앞에 추가한다. 기존 9월 페이지에 다른 달의 기록을 합치거나 월 이름만 바꾸지 않는다.

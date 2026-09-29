@@ -38,7 +38,7 @@
             "tab": "개발자",
             "pages": ["developers/index", "developers/keys", "developers/calls", "developers/web-chat"]
           },
-          { "tab": "릴리즈노트", "pages": ["changelog"] }
+          { "tab": "릴리즈노트", "groups": [{ "group": "2026년", "pages": ["changelog"] }] }
         ]
       },
       {
@@ -57,7 +57,7 @@
             "tab": "Developers",
             "pages": ["en/developers/index", "en/developers/keys", "en/developers/calls", "en/developers/web-chat"]
           },
-          { "tab": "Release notes", "pages": ["en/changelog"] }
+          { "tab": "Release notes", "groups": [{ "group": "2026", "pages": ["en/changelog"] }] }
         ]
       }
     ]
