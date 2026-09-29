@@ -1,11 +1,11 @@
 ---
-title: "Set up voice profiles and conversation settings"
+title: "Voice"
 description: "Create a profile, assign it to a phone channel, and adjust behavior for new voice sessions"
 ---
 
 Choose a voice in **Voice profiles and channels**, not in the Agent editor. Sign in and open **Voice profiles** (`/dashboard/settings/voice-profiles`) in the app. An administrator must enable usable STT/TTS models and configure provider credentials before you can save a profile.
 
-## 1. Create a voice profile
+## Voice profiles
 
 1. Select **Add voice profile** and enter a name. Under **Voice**, choose a TTS model and a compatible voice; play a preview.
 2. Under **Speech recognition (STT)**, select a provider and model. Enter terms such as company names, one per line (up to 100 terms, 100 characters each).
@@ -14,7 +14,7 @@ Choose a voice in **Voice profiles and channels**, not in the Agent editor. Sign
 
 If the profile says **Needs attention** or cannot be saved, check that the speech models are enabled, provider credentials exist, and the voice is compatible with the TTS model. Ask an administrator to configure models or keys if you cannot do so.
 
-## 2. Apply it to a channel and the account
+## Channels and conversation settings
 
 In **Channels** in the app, choose a phone number assigned to a Live Agent and select its **Voice profile**. You also choose a profile when connecting a new number. The web-chat setup screen has a profile selector, but **voice does not apply to current text web chat**. See [channel setup](/en/operations/channels) for number and web-chat prerequisites.
 
@@ -26,6 +26,6 @@ When a **new voice session starts**, the profile revision, voice, STT/TTS models
 
 Start a **new call** through the connected number to check the voice and end behavior. If there is no audio, first check that the channel's profile is **Available** and the Agent has a current Live deployment. You cannot delete the default profile, one assigned to a channel, or one used by an active session.
 
-## To use your own voice
+## Custom voices
 
 Only when **Cartesia** is the TTS provider and its credential is configured, open **My voices** and upload a name and a WAV, MP3, or WEBM file (at most 10 MiB). Once the voice is **Available**, choose it under **Voice** in a Cartesia profile and save. The file extension must match its MIME type. A custom voice in use by a profile or active session cannot be deleted.

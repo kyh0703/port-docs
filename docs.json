@@ -2,6 +2,10 @@
   "$schema": "https://mintlify.com/docs.json",
   "theme": "maple",
   "name": "Overthinker",
+  "logo": {
+    "light": "/brand/overthinker-logo-light.png",
+    "dark": "/brand/overthinker-logo-dark.png"
+  },
   "colors": {
     "primary": "#6545A7",
     "light": "#BBA6FF",
@@ -17,9 +21,9 @@
             "tab": "서비스",
             "groups": [
               { "group": "시작하기", "pages": ["index", "quickstart", "product"] },
-              { "group": "Agent 만들기", "pages": ["ai/agents", "ai/voice", "ai/tools", "ai/knowledge", "ai/variables", "ai/evaluations"] },
-              { "group": "배포와 운영", "pages": ["operations/channels", "operations/campaigns", "operations/conversations", "operations/monitoring"] },
-              { "group": "계정과 관리", "pages": ["operations/integrations", "operations/billing", "operations/support", "operations/admin"] }
+              { "group": "에이전트", "pages": ["ai/agents", "ai/voice", "ai/tools", "ai/knowledge", "ai/variables", "ai/evaluations"] },
+              { "group": "운영", "pages": ["operations/channels", "operations/campaigns", "operations/conversations", "operations/monitoring"] },
+              { "group": "계정", "pages": ["operations/integrations", "operations/billing", "operations/support", "operations/admin"] }
             ]
           },
           {
@@ -36,9 +40,9 @@
             "tab": "Service",
             "groups": [
               { "group": "Getting started", "pages": ["en/index", "en/quickstart", "en/product"] },
-              { "group": "Build an Agent", "pages": ["en/ai/agents", "en/ai/voice", "en/ai/tools", "en/ai/knowledge", "en/ai/variables", "en/ai/evaluations"] },
-              { "group": "Deploy and operate", "pages": ["en/operations/channels", "en/operations/campaigns", "en/operations/conversations", "en/operations/monitoring"] },
-              { "group": "Account and administration", "pages": ["en/operations/integrations", "en/operations/billing", "en/operations/support", "en/operations/admin"] }
+              { "group": "Agents", "pages": ["en/ai/agents", "en/ai/voice", "en/ai/tools", "en/ai/knowledge", "en/ai/variables", "en/ai/evaluations"] },
+              { "group": "Operations", "pages": ["en/operations/channels", "en/operations/campaigns", "en/operations/conversations", "en/operations/monitoring"] },
+              { "group": "Account", "pages": ["en/operations/integrations", "en/operations/billing", "en/operations/support", "en/operations/admin"] }
             ]
           },
           {

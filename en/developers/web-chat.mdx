@@ -1,11 +1,11 @@
 ---
-title: "Install web chat on your website"
+title: "Web chat setup"
 description: "Configure an allowed Origin and Public key, then add the channel's installation code"
 ---
 
 Web chat runs on the page your visitors open. Use a **web-chat Public API key**, not the Private key used to create calls from your server.
 
-## Prepare the channel and key
+## Prerequisites
 
 1. **Deploy an Agent to Live** in Overthinker.
 2. In **Channels → Web chat**, create an endpoint and select the Agent, an allowed website Origin, and an available voice profile. Check that it is active. The profile does not affect the current text chat.
@@ -14,7 +14,7 @@ Web chat runs on the page your visitors open. Use a **web-chat Public API key**,
 
 An Origin includes the scheme, domain, and port. `https://example.com` and `https://www.example.com` are different Origins. Add the Origin of the page that will host the chat. An Agent without a Live deployment or a mismatched Origin cannot start a conversation.
 
-## Add the installation code
+## Installation code
 
 Paste the script from the Channels page into your site's HTML. Its structure looks like this; **use the values issued in the UI** rather than inventing a hostname, endpoint ID, or key.
 
@@ -27,7 +27,7 @@ Paste the script from the Channels page into your site's HTML. Its structure loo
 
 When a visitor opens the page from an allowed Origin, the loader displays a chat window and starts a session. The browser's Public key is not a secret, but the server still checks which Origin and endpoint it allows. Never send a Private key to the browser.
 
-## Troubleshoot startup
+## Troubleshooting
 
 - **No installation code:** Check that an active Public key allows this endpoint and Origin.
 - **403:** Check the page's actual Origin against the allowed Origins on both the channel and key; check that the key allows this endpoint.

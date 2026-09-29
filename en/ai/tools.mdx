@@ -1,11 +1,11 @@
 ---
-title: "Create and connect tools"
+title: "Tools"
 description: "Publish a tool version, attach it to an Agent, and check an execution"
 ---
 
 To use a tool, sign in, publish its version under **Tool library**, and attach it to the appropriate node of an [Agent](/en/ai/agents). For an external service, have its endpoint and any required credentials ready.
 
-## 1. Create a tool
+## Tool types
 
 Under **Tool library > Add tool**, choose a type, configure it, and **Save**.
 
@@ -17,11 +17,11 @@ Under **Tool library > Add tool**, choose a type, configure it, and **Save**.
 | Knowledge search | First create a [knowledge Revision](/en/ai/knowledge). |
 | Human transfer | Set a phone number or SIP URI. This tool works on **configured SIP voice calls**, not as automatic phone transfer from a web chat. |
 
-## 2. Publish a version
+## Versions
 
 In the **Tool library**, **Save** applies a new tool's Draft settings and automatically creates a publication such as `v1`. Saving edits in that same detail panel publishes another `vN`. Check the version number at the top of the detail panel. A failed save or a Draft without a publication cannot be attached to an Agent. If you edit on the separate tool-detail route (`/tools/<toolId>`), changes autosave as a Draft there; use **Publish** and enter a version name to publish them.
 
-## 3. Attach and verify
+## Agent integration
 
 In the Agent editor, select the published tool on the node that needs it; choose **Latest** or a specific `vN` under **Version**. Latest uses the currently published tool version in new conversations; a pinned version stays on that release. **Deploy** the Agent, start a fresh test conversation, and ask something that requires the tool. Check the test transcript for the tool name and **completed/failed** status, then check the response or external service result. A test revision may differ from Live, so verify the customer channel in a **new conversation** too.
 

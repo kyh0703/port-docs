@@ -1,0 +1,59 @@
+/* Leave the native switch visible unless its dropdown enhancement is mounted. */
+[data-theme-preference-switch="pill"]:has(> .overthinker-theme-select) {
+  width: auto;
+  height: auto;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  flex-shrink: 0;
+}
+
+[data-theme-preference-switch="pill"]:has(> .overthinker-theme-select) > :not(.overthinker-theme-select) {
+  display: none;
+}
+
+.overthinker-theme-select {
+  appearance: auto;
+  min-height: 2.25rem;
+  max-width: 6.5rem;
+  padding: 0.375rem 0.5rem;
+  border: 1px solid #ded7e7;
+  border-radius: 0.5rem;
+  background-color: #f6f3fa;
+  color: #514667;
+  color-scheme: light;
+  font: inherit;
+  font-size: 0.8125rem;
+  cursor: pointer;
+}
+
+.overthinker-theme-select:hover {
+  border-color: #6545a7;
+}
+
+.overthinker-theme-select:focus-visible {
+  outline: 2px solid #6545a7;
+  outline-offset: 2px;
+}
+
+.dark .overthinker-theme-select {
+  border-color: #484152;
+  background-color: #24202d;
+  color: #e8e1f5;
+  color-scheme: dark;
+}
+
+.dark .overthinker-theme-select:hover {
+  border-color: #bba6ff;
+}
+
+.dark .overthinker-theme-select:focus-visible {
+  outline-color: #bba6ff;
+}
+
+@media (max-width: 1023px) {
+  .overthinker-theme-select {
+    min-height: 2.75rem;
+    font-size: 1rem;
+  }
+}

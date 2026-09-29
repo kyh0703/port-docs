@@ -1,5 +1,5 @@
 ---
-title: "Evaluate a model scenario and your Live Agent"
+title: "Evaluations"
 description: "Run an independent prompt/model evaluation, then text-test the current production Agent"
 ---
 
@@ -10,7 +10,7 @@ Sign in and open **Evals** (`/evals`) in the app. Choose the target you want to 
 | **Prompt/model evaluation** | Sends your system prompt and user turns directly to the selected model. It does not run the Agent graph or Live deployment. | A usable OpenAI or OpenRouter model and provider credential |
 | **Live deployed Agent test** | Creates a new text conversation using the Agent's **current production Live revision**. | An active production deployment for that Agent |
 
-## Evaluate a saved model scenario
+## Model scenarios
 
 1. Under **Prompt/model evaluation → New evaluation**, enter a name, OpenAI/OpenRouter provider, model ID, and system prompt. If needed, add names and values for variables such as `{{product_name}}` to use in the prompt or turns.
 2. Place an **Expected response** after a **User turn**. To check tool behavior, add **Tool mocks** after that user turn, in the expected call order, with each tool name and returned content. Mocks from one user turn do not carry over to the next.
@@ -22,7 +22,7 @@ An expected response passes when it is **contained in the actual answer** after 
 Save before running; at least one expected response must follow a user turn. An account can have up to 100 evaluation definitions and 16 variables per definition. You can add up to 12 user turns and 12 tool turns (24 turns in total). Up to 100 recent runs are listed per evaluation, and only one evaluation can run at a time per user. Model API calls may incur costs.
 </Note>
 
-## Text-test the current Live Agent
+## Live Agent tests
 
 1. Open the **Live deployed Agent test** tab, choose an Agent, and check the displayed **deployment revision vN** and read-only system prompts.
 2. Select **Start test**, enter any required variables, and have a conversation. Check the transcript and execution/performance records. This creates a new conversation and may consume usage.

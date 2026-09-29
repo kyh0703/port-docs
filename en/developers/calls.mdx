@@ -1,17 +1,17 @@
 ---
-title: "Create outbound calls from your server"
+title: "Outbound API"
 description: "Create a call with a Private key, avoid duplicates, and inspect its status"
 ---
 
 Call this API from your server. Send a [Private key](/en/developers/keys) using `Authorization: Bearer` and connect your source phone number to a **Live-deployed Agent**. `agentId` and `fromNumberId` are UUIDv7 identifiers belonging to the same account. You also need available call time.
 
-## Check required variables
+## Required variables
 
 Request `GET /api/v1/calls/requirements?agentId=<Agent UUIDv7>&fromNumberId=<phone number UUIDv7>`. The response's `data.variableNames` lists variables required by the connected Agent. `data.publishedId` and `revision` identify its current deployment. Supply required variables in the create request's `variables` field.
 
 Use `Authorization: Bearer <key>` for this endpoint and the following requests. Success responses are wrapped in `statusCode`, `message`, and `data`.
 
-## Create the call
+## Call creation
 
 Generate a unique `Idempotency-Key` for each new attempt. If you resend an attempt, keep **both the same key and the same request body**. Replace the example identifiers, number, and key with your account's values.
 
@@ -35,7 +35,7 @@ Idempotency-Key: <unique key for this attempt>
 
 A successful request returns **201 Created** with `data.callId`, `data.conversationId`, and `data.status`. Status is one of `pending`, `uncertain`, `active`, `ended`, or `failed`. An accepted request does not establish that the recipient answered.
 
-## Inspect the result
+## Call status
 
 Call `GET /api/v1/calls/<callId>` with a Private key for the same account. The **200** response has the same `data` shape. `uncertain` means the dial result has not been confirmed. Do not create a new attempt with a new key: inspect the existing `callId` or replay the **original key and body** to avoid a duplicate call.
 

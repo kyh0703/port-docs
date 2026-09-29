@@ -1,11 +1,11 @@
 ---
-title: "Use variables in conversations"
+title: "Variables"
 description: "Use system values, per-customer inputs, and REST response bindings in an Agent"
 ---
 
 To insert a date, customer detail, or earlier tool result, use `{{name}}` in an [Agent's](/en/ai/agents) **system prompt** or **greeting**. After signing in, search and copy built-in tokens from **Variables**.
 
-## 1. Choose automatic values
+## System variables
 
 | Tokens | Value and availability |
 | --- | --- |
@@ -15,11 +15,11 @@ To insert a date, customer detail, or earlier tool result, use `{{name}}` in an 
 
 System tokens retain their Korean names even when editing in English.
 
-## 2. Supply per-conversation values
+## User variables
 
 Add a new name such as `{{order_id}}` to a prompt or greeting; it becomes a user variable. Before an Agent test or outbound call, enter its value in the **Conversation variables** dialog and choose string, number, or boolean. If a saved value for that phone customer is prefilled in an outbound call, you can change it for this call. Check or edit saved values under **Customers > customer details > Customer attributes**. To reuse stored values in later conversations or extract values after a conversation, enable **Customer memory** for that Agent. A value supplied for this conversation takes precedence over a stored value with the same name.
 
-## 3. Bind an earlier REST response
+## REST response bindings
 
 Add an **output JSON Schema** to a [REST tool](/en/ai/tools). Scalar string, number, and boolean fields then become candidates named `api.<functionName>.<field>`. In the Agent node, open the receiving REST tool's **value sources** (double-arrow icon) and bind its **request argument** or `{{variable}}` in the URL to the earlier tool's response variable. The earlier tool must run and return a value first. Handoff parameters can also be selected as sources on reachable downstream nodes.
 

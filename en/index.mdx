@@ -1,12 +1,12 @@
 ---
-title: "Introduction to Overthinker"
+title: "Introduction"
 sidebarTitle: "Introduction"
 description: "Build AI Agents, connect phone and web chat, and run customer conversations"
 ---
 
-Overthinker lets you define how an AI Agent responds, connect it to phone and web chat, and review the resulting conversations. Agents handle recurring inquiries and use tools for connected tasks. After a conversation, use its record and customer history to prepare the next response.
+Overthinker uses AI to handle customer conversations by phone and web chat. Define response rules and reference materials, then connect tools for the tasks your Agent needs to perform.
 
-## What can you do?
+## Use cases
 
 - Answer customer questions using your instructions and business knowledge.
 - Receive calls through connected numbers, place a single call, or run an outbound campaign.
@@ -14,41 +14,41 @@ Overthinker lets you define how an AI Agent responds, connect it to phone and we
 - Call external APIs or Google app tools during a conversation to look up or record information.
 - Review transcripts and analysis, and transfer configured SIP calls to a human agent.
 
-## How does it work?
+## How it works
 
-Follow **create an Agent → publish Live → connect a channel → review the conversation**.
-
-Give the Agent a role, response guidelines, reference knowledge, and tools. During a phone conversation, speech recognition (STT) turns the customer's speech into text. The execution model (LLM) chooses a response or tool call, and speech synthesis (TTS) turns the reply into audio. Adjust the voice, interruptions, and silence behavior under [Voice profiles and conversation settings](/en/ai/voice).
+- **Agent**: Uses your instructions, knowledge, and tools to respond and perform tasks.
+- **Voice**: Listens with speech recognition (STT) and speaks with speech synthesis (TTS). Adjust voices and conversation behavior in [Voice](/en/ai/voice).
+- **Channel**: Connects the Agent to a phone number or website.
 
 Draft edits do not immediately affect customers. Use **Deploy** to select a Live version, then connect a phone number or web chat endpoint. New conversations use that publication. Web chat is currently text-only.
 
-## Divide work between Agent nodes
+## Agent structure
 
-An Agent can contain several nodes with different responsibilities. Choose the arrangement that fits your workflow in [Create and publish an Agent](/en/ai/agents).
+An Agent can split work across nodes. See [Agents](/en/ai/agents) for setup.
 
-- **Supervisor**: A coordinating node delegates work to specialist nodes and uses their results to continue the conversation.
-- **Handoff**: Another node takes over the conversation when a condition matches. Use it when responsibility changes, such as moving from intake to detailed guidance.
+- **Supervisor**: A coordinator delegates tasks to specialists and uses their results.
+- **Handoff**: Another node takes over when a condition matches.
 
-A handoff between Agent nodes is different from a transfer to a person. For human assistance, check the [transfer tool and SIP call requirements](/en/operations/conversations).
+Agent handoff is not human transfer. Human transfer requires a configured SIP call; see [Conversations and customers](/en/operations/conversations).
 
-## Key features
+## Features
 
 - **[Tools](/en/ai/tools)**: Connect REST APIs, external MCP and A2A services, and Google apps to an Agent's work.
-- **[Knowledge search](/en/ai/knowledge)**: Upload documents and select a Revision for the Agent to consult.
+- **[Knowledge](/en/ai/knowledge)**: Upload documents and select a Revision for the Agent to consult.
 - **[Channels](/en/operations/channels)**: Connect a number assigned to your account or a website chat endpoint to a Live Agent.
 - **[Outbound campaigns](/en/operations/campaigns)**: Review a consent-backed recipient CSV and call recipients sequentially.
 - **[Conversations and customers](/en/operations/conversations)**: Review transcripts, analysis, and customer timelines, and manage customer memory.
-- **[Live conversations](/en/operations/monitoring)**: Follow the state, transcript, and events of active voice calls on your account.
+- **[Monitoring](/en/operations/monitoring)**: Follow the state, transcript, and events of active voice calls on your account.
 
-## Get started
+## Next steps
 
 <Columns cols={2}>
-  <Card title="Start your first conversation" icon="play" href="/en/quickstart">
+  <Card title="Quickstart" icon="play" href="/en/quickstart">
     Create an Agent, publish it to Live, and check its first response through a channel.
   </Card>
-  <Card title="Developer integrations" icon="code" href="/en/developers/">
+  <Card title="Overview" icon="code" href="/en/developers/">
     Start calls from your server or install web chat on your website.
   </Card>
 </Columns>
 
-Use the sidebar for feature-specific instructions. Check [Account and usage](/en/operations/billing) for calling time, and [Release notes](/en/changelog) for service updates.
+Use the sidebar for feature-specific instructions. Check [Account and billing](/en/operations/billing) for calling time, and [Release notes](/en/changelog) for service updates.
