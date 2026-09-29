@@ -1,0 +1,32 @@
+{
+  "$schema": "https://mintlify.com/docs.json",
+  "theme": "mint",
+  "name": "Overthinker",
+  "colors": {
+    "primary": "#6545A7",
+    "light": "#625582",
+    "dark": "#ACA0D8"
+  },
+  "navigation": {
+    "languages": [
+      {
+        "language": "ko",
+        "groups": [
+          {
+            "group": "시작하기",
+            "pages": ["index"]
+          }
+        ]
+      },
+      {
+        "language": "en",
+        "groups": [
+          {
+            "group": "Getting started",
+            "pages": ["en/index"]
+          }
+        ]
+      }
+    ]
+  }
+}
