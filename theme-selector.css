@@ -126,10 +126,8 @@ body:has(.ot-language-button) [data-component-part="localization-select-trigger"
   border-radius: 9999px;
   box-shadow: 0 8px 24px rgb(0 0 0 / 0.2);
 }
-@media (min-width: 1024px) {
-  body:has(.chat-assistant-floating-input) .ot-contact-control {
-    bottom: calc(104px + env(safe-area-inset-bottom, 0px));
-  }
+body:has(.chat-assistant-floating-input) .ot-contact-control {
+  bottom: calc(104px + env(safe-area-inset-bottom, 0px));
 }
 body:has(.ot-contact-control:not([hidden])) [data-ot-contact-fallback] {
   display: none;
