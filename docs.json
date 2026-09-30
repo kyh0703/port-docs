@@ -20,6 +20,13 @@
     "color": { "light": "#FFFFFF", "dark": "#272729" }
   },
   "appearance": { "default": "dark" },
+  "navbar": {
+    "primary": {
+      "type": "button",
+      "label": "문의하기",
+      "href": "http://macbookpro:3000/contact"
+    }
+  },
   "navigation": {
     "languages": [
       {
@@ -43,6 +50,13 @@
       },
       {
         "language": "en",
+        "navbar": {
+          "primary": {
+            "type": "button",
+            "label": "Contact us",
+            "href": "http://macbookpro:3000/contact"
+          }
+        },
         "tabs": [
           {
             "tab": "Service",

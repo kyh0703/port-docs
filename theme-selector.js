@@ -151,6 +151,23 @@
     if (element.matches(switchSelector)) enhanceSwitch(element);
     element.querySelectorAll(switchSelector).forEach(enhanceSwitch);
   }
+  function enhanceContactButton() {
+    const source = document.querySelector('#topbar-cta-button > a');
+    if (!source) return;
+    let control = document.querySelector('.ot-contact-control');
+    if (!control) {
+      control = document.createElement('div');
+      control.className = 'ot-contact-control';
+      document.body.append(control);
+    }
+    const current = control.firstElementChild;
+    // Mintlify owns the destination and localized label in docs.json.
+    if (current?.getAttribute('href') !== source.getAttribute('href') || current?.textContent !== source.textContent) {
+      control.replaceChildren(source.cloneNode(true));
+    }
+    const fallback = document.getElementById(source.getAttribute('href'));
+    fallback?.setAttribute('data-ot-contact-fallback', '');
+  }
   // Mobile navigation mounts on demand; locale changes can replace the sidebar.
   new MutationObserver((records) => {
     for (const record of records) {
@@ -164,9 +181,11 @@
         if (node instanceof Element) enhanceWithin(node);
       }
     }
+    enhanceContactButton();
   }).observe(document.documentElement, {
     childList: true, subtree: true, attributes: true,
     attributeFilter: ['aria-pressed', 'lang'],
   });
   enhanceWithin(document.body);
+  enhanceContactButton();
 })();

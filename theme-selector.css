@@ -111,3 +111,35 @@ body:has(.ot-language-button) [data-component-part="localization-select-trigger"
 @media (prefers-reduced-motion: reduce) {
   .ot-theme-trigger { transition: none; }
 }
+
+/* Maple puts the native CTA in the sidebar; keep its configured link in the top bar. */
+.ot-contact-control {
+  position: fixed;
+  top: 24px;
+  right: 32px;
+  z-index: 40;
+}
+.ot-contact-control > a {
+  min-height: 36px;
+  padding: 8px 12px;
+}
+body:has(.ot-contact-control) [data-ot-contact-fallback] {
+  display: none;
+}
+@media (max-width: 1023px) {
+  .ot-contact-control {
+    top: 12px;
+    right: 104px;
+  }
+  .ot-contact-control > a {
+    min-height: 40px;
+  }
+  #navbar .nav-logo {
+    max-width: 100px;
+    height: auto;
+    max-height: 28px;
+  }
+}
+@media (max-width: 360px) {
+  #navbar .nav-logo { max-width: 80px; }
+}
