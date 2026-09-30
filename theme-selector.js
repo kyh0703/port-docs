@@ -2,6 +2,7 @@
   const switchSelector = '[data-theme-preference-switch="pill"]';
   const themes = ['system', 'light', 'dark'];
   const languages = ['ko', 'en'];
+  const contactScrollThreshold = 72;
   // Match port-web's ThemeDropdown Lucide icons without adding a React runtime.
   const paths = {
     system: '<rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/>',
@@ -151,6 +152,12 @@
     if (element.matches(switchSelector)) enhanceSwitch(element);
     element.querySelectorAll(switchSelector).forEach(enhanceSwitch);
   }
+  function updateContactVisibility() {
+    const control = document.querySelector('.ot-contact-control');
+    if (!control) return;
+    const hidden = window.scrollY <= contactScrollThreshold;
+    if (control.hidden !== hidden) control.hidden = hidden;
+  }
   function enhanceContactButton() {
     const source = document.querySelector('#topbar-cta-button > a');
     if (!source) return;
@@ -158,6 +165,7 @@
     if (!control) {
       control = document.createElement('div');
       control.className = 'ot-contact-control';
+      control.hidden = window.scrollY <= contactScrollThreshold;
       document.body.append(control);
     }
     const current = control.firstElementChild;
@@ -167,6 +175,7 @@
     }
     const fallback = document.getElementById(source.getAttribute('href'));
     fallback?.setAttribute('data-ot-contact-fallback', '');
+    updateContactVisibility();
   }
   // Mobile navigation mounts on demand; locale changes can replace the sidebar.
   new MutationObserver((records) => {
@@ -187,5 +196,6 @@
     attributeFilter: ['aria-pressed', 'lang'],
   });
   enhanceWithin(document.body);
+  window.addEventListener('scroll', updateContactVisibility, { passive: true });
   enhanceContactButton();
 })();
