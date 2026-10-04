@@ -1,22 +1,20 @@
 ---
-title: "Web chat setup"
-description: "Configure an allowed Origin and Public key, then add the channel's installation code"
+title: "Existing web chat setup"
+description: "Maintain an existing website integration using its endpoint and Public key"
 ---
 
 Web chat runs on the page your visitors open. Use a **web-chat Public API key**, not the Private key used to create calls from your server.
 
 ## Prerequisites
 
-1. **Deploy an Agent to Live** in Overthinker.
-2. In **Channels → Web chat**, create an endpoint and select the Agent, an allowed website Origin, and an available voice profile. Check that it is active. The profile does not affect the current text chat.
-3. In **API keys → Public API keys**, create a key allowed for that endpoint and Origin. You can reuse an existing key if it already allows both.
-4. Return to **Channels → Web chat** and copy the endpoint's **installation code**. If no suitable active Public key is available, the page shows a link to issue one instead of installation code.
-
-An Origin includes the scheme, domain, and port. `https://example.com` and `https://www.example.com` are different Origins. Add the Origin of the page that will host the chat. An Agent without a Live deployment or a mismatched Origin cannot start a conversation.
+1. Your account must already have an active web chat endpoint bound to an Agent with a **Live deployment**. The channel-management screen and endpoint creation/configuration APIs are no longer available.
+2. The website's actual Origin must match an Origin already allowed by the endpoint. `https://example.com` and `https://www.example.com` are different Origins.
+3. In **API keys → Public API keys**, create a key allowed for that existing endpoint and Origin. Reuse an existing key if it already allows both.
+4. Find the endpoint's public ID in the existing installation code or the `publicId` returned by `GET /api/v1/web-chat/endpoints`. This lookup requires account authentication.
 
 ## Installation code
 
-Paste the script from the Channels page into your site's HTML. Its structure looks like this; **use the values issued in the UI** rather than inventing a hostname, endpoint ID, or key.
+Use the existing endpoint's public ID and Public key in the script below. Do not invent a hostname, endpoint ID, or key. The user interface no longer creates endpoints or generates installation code.
 
 ```html
 <script src="<Overthinker origin>/web-chat/loader.js"
@@ -29,9 +27,9 @@ When a visitor opens the page from an allowed Origin, the loader displays a chat
 
 ## Troubleshooting
 
-- **No installation code:** Check that an active Public key allows this endpoint and Origin.
+- **No endpoint:** Creating new endpoints is not supported. This guide applies only to existing endpoints.
 - **403:** Check the page's actual Origin against the allowed Origins on both the channel and key; check that the key allows this endpoint.
 - **404:** Check that the endpoint is active and its Agent has a Live deployment.
 - **429:** Session-start requests are being limited. Stop repeatedly refreshing and try again later.
 
-Web chat starts a text conversation. A voice profile selected on the channel does not change the voice of that text chat. If you change the website's Origin or issue a new key, confirm the allowed scope on the channel and key, then copy updated installation code.
+Web chat starts a text conversation; its existing voice profile does not add audio. If you issue a new key, confirm the allowed scope on the existing endpoint and key, then update the installation code. An Origin not already allowed by the endpoint cannot use it.

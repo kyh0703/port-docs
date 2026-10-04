@@ -18,9 +18,9 @@ Overthinker uses AI to handle customer conversations by phone and web chat. Defi
 
 - **Agent**: Uses your instructions, knowledge, and tools to respond and perform tasks.
 - **Voice**: Listens with speech recognition (STT) and speaks with speech synthesis (TTS). Adjust voices and conversation behavior in [Voice](/en/ai/voice).
-- **Channel**: Connects the Agent to a phone number or website.
+- **App connection**: Uses app authentication and conversation connections. There is no separate channel-management screen.
 
-Draft edits do not immediately affect customers. Use **Deploy** to select a Live version, then connect a phone number or web chat endpoint. New conversations use that publication. Web chat is currently text-only.
+Draft edits do not immediately affect customers. Use **Deploy** to select a Live version for new production conversations. Existing phone and web chat connections remain available, but user channel creation and configuration are no longer offered. Web chat is currently text-only.
 
 ## Agent structure
 
@@ -35,7 +35,6 @@ Agent handoff is not human transfer. Human transfer requires a configured SIP ca
 
 - **[Tools](/en/ai/tools)**: Connect REST APIs, external MCP and A2A services, and Google apps to an Agent's work.
 - **[Knowledge](/en/ai/knowledge)**: Upload documents and select a Revision for the Agent to consult.
-- **[Channels](/en/operations/channels)**: Connect a number assigned to your account or a website chat endpoint to a Live Agent.
 - **[Outbound campaigns](/en/operations/campaigns)**: Review a consent-backed recipient CSV and call recipients sequentially.
 - **[Conversations and customers](/en/operations/conversations)**: Review transcripts, analysis, and customer timelines, and manage customer memory.
 - **[Monitoring](/en/operations/monitoring)**: Follow the state, transcript, and events of active voice calls on your account.
@@ -44,7 +43,7 @@ Agent handoff is not human transfer. Human transfer requires a configured SIP ca
 
 <Columns cols={2}>
   <Card title="Quickstart" icon="play" href="/en/quickstart">
-    Create an Agent, publish it to Live, and check its first response through a channel.
+    Create an Agent, publish it to Live, and check its response in a new conversation.
   </Card>
   <Card title="Overview" icon="code" href="/en/developers/">
     Start calls from your server or install web chat on your website.

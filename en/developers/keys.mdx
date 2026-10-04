@@ -23,8 +23,8 @@ If a key is compromised, **rotate** or **revoke** it. Do not assume that the old
 
 ## Public keys
 
-1. In **Channels → Web chat**, create an endpoint with a Live Agent, the exact allowed website Origin, and an available voice profile. The profile does not affect current text chat.
-2. Under **API Keys → Public API Keys**, select a name, allowed Origins, and the endpoints that this key may access. An Origin is the scheme and host, plus port when applicable, for example `https://example.com`.
-3. Copy the installation code from **Channels → Web chat** and put it on a page served from that allowed Origin. See [Web chat setup](/en/developers/web-chat) for a verification checklist.
+1. Your account must already have a web chat endpoint. The channel-management screen and endpoint creation/configuration APIs are no longer available.
+2. Under **API Keys → Public API Keys**, select a name, allowed Origins, and the existing endpoints that this key may access. An Origin is the scheme and host, plus port when applicable, for example `https://example.com`. A key cannot be issued without an eligible endpoint.
+3. Use the existing endpoint's public ID and the new Public key in the installation code. See [Existing web chat setup](/en/developers/web-chat) for a verification checklist.
 
-Revoking the key blocks new sessions using it. If you change the key or site Origin, check both the endpoint and the key's allowed Origins, then copy updated installation code. Public keys are not secrets; still restrict them to the minimum necessary endpoints and Origins.
+Revoking the key blocks new sessions using it. If you change the key, check both the existing endpoint and the key's allowed Origins, then update the installation code. Public keys are not secrets; still restrict them to the minimum necessary endpoints and Origins.

@@ -37,7 +37,7 @@
             "groups": [
               { "group": "시작하기", "pages": ["index", "quickstart", "product"] },
               { "group": "에이전트", "pages": ["ai/agents", "ai/voice", "ai/tools", "ai/knowledge", "ai/variables", "ai/evaluations"] },
-              { "group": "운영", "pages": ["operations/channels", "operations/campaigns", "operations/conversations", "operations/monitoring"] },
+              { "group": "운영", "pages": ["operations/campaigns", "operations/conversations", "operations/monitoring"] },
               { "group": "계정", "pages": ["operations/integrations", "operations/billing", "operations/support", "operations/admin"] }
             ]
           },
@@ -63,7 +63,7 @@
             "groups": [
               { "group": "Getting started", "pages": ["en/index", "en/quickstart", "en/product"] },
               { "group": "Agents", "pages": ["en/ai/agents", "en/ai/voice", "en/ai/tools", "en/ai/knowledge", "en/ai/variables", "en/ai/evaluations"] },
-              { "group": "Operations", "pages": ["en/operations/channels", "en/operations/campaigns", "en/operations/conversations", "en/operations/monitoring"] },
+              { "group": "Operations", "pages": ["en/operations/campaigns", "en/operations/conversations", "en/operations/monitoring"] },
               { "group": "Account", "pages": ["en/operations/integrations", "en/operations/billing", "en/operations/support", "en/operations/admin"] }
             ]
           },

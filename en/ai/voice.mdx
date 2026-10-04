@@ -1,22 +1,22 @@
 ---
 title: "Voice"
-description: "Create a profile, assign it to a phone channel, and adjust behavior for new voice sessions"
+description: "Create a voice profile and adjust behavior for new voice sessions"
 ---
 
-Choose a voice in **Voice profiles and channels**, not in the Agent editor. Sign in and open **Voice profiles** (`/dashboard/settings/voice-profiles`) in the app. An administrator must enable usable STT/TTS models and configure provider credentials before you can save a profile.
+Choose a voice in **Voice profiles**. Sign in and open **Voice profiles** (`/dashboard/settings/voice-profiles`) in the app. An administrator must enable usable STT/TTS models and configure provider credentials before you can save a profile.
 
 ## Voice profiles
 
 1. Select **Add voice profile** and enter a name. Under **Voice**, choose a TTS model and a compatible voice; play a preview.
 2. Under **Speech recognition (STT)**, select a provider and model. Enter terms such as company names, one per line (up to 100 terms, 100 characters each).
 3. If needed, adjust response speed, interruptions, noise cancellation, voice-activity sensitivity, background sound, DTMF input, and outbound dial wait. Select **Create profile**.
-4. Check that the list shows the profile as **Available** with a revision. You can designate an available profile as the **default**. The default is preselected for new channel connections and used by direct browser voice sessions with no explicit profile.
+4. Check that the list shows the profile as **Available** with a revision. You can designate an available profile as the **default**. Direct browser voice sessions use the default when no profile is specified.
 
 If the profile says **Needs attention** or cannot be saved, check that the speech models are enabled, provider credentials exist, and the voice is compatible with the TTS model. Ask an administrator to configure models or keys if you cannot do so.
 
-## Channels and conversation settings
+## Conversation settings
 
-In **Channels** in the app, choose a phone number assigned to a Live Agent and select its **Voice profile**. You also choose a profile when connecting a new number. The web-chat setup screen has a profile selector, but **voice does not apply to current text web chat**. See [channel setup](/en/operations/channels) for number and web-chat prerequisites.
+There is no separate channel-management screen. Existing phone bindings and their voice profiles remain intact. Voice does not apply to current text web chat.
 
 **Conversation settings** (`/dashboard/settings/conversation`) apply to the **account, not a specific Agent**. Choose privacy masking and whether to retain encrypted originals, an end-of-call message and end phrases, maximum call length and silence timeout, idle follow-up (fixed text or AI-generated, interval and count), and timed announcements or end actions. Select **Save settings**. Retaining encrypted originals is a separate choice from masking.
 

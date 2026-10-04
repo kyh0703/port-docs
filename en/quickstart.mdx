@@ -1,9 +1,9 @@
 ---
 title: "Quickstart"
-description: "Set up an Agent, connect a channel, and check the resulting conversation"
+description: "Set up an Agent, publish to Live, and check a new conversation"
 ---
 
-To start serving customers, follow **create an Agent → publish to Live → connect a channel → check the conversation**. Saving a draft does not publish it. Republish changes before expecting them to appear in new conversations.
+Follow **create an Agent → publish to Live → check a new conversation**. Saving a draft does not publish it. Republish changes before expecting them to appear in new conversations.
 
 ## Agents
 
@@ -11,16 +11,16 @@ After signing in, create an Agent under **Agents**. Define what it handles, its 
 
 See [Agents](/en/ai/agents) for the detailed flow.
 
-## Channels
+## Connections
 
-In **Channels**, connect an available phone number to the Live Agent and an available voice profile. Creating web chat also requires an Agent, allowed Origin, and voice profile, although the profile does not affect current text chat. Create a Public key allowed for that chat and Origin under **API Keys**, then put the installation code on the site. You need a number for calls, and chat cannot start from an unapproved Origin.
+The separate **Channels** screen and user APIs for connecting phone numbers or creating web chat endpoints are no longer available. App authentication, conversation connections, and existing phone and web chat connections remain supported.
 
-See [Channels](/en/operations/channels) for channel setup and verification. To initiate calls from your server instead, see [Overview](/en/developers/).
+Check the production revision with a [Live test](/en/ai/evaluations). For server calls through an existing number, see [Overview](/en/developers/). Use [Web chat setup](/en/developers/web-chat) only when an endpoint already exists.
 
 ## Conversation checks
 
-Place a call or open the chat on an allowed website and ask a question. For a voice call, use [Monitoring](/en/operations/monitoring) to inspect the connection and transcript. After either a call or a chat ends, review [Conversations and customers](/en/operations/conversations). Publishing an Agent or accepting a call request does not by itself mean a customer was connected.
+Start a new conversation in the app or a Live test and ask a question. For an existing phone connection, use [Monitoring](/en/operations/monitoring) to inspect the connection and transcript. After a conversation ends, review [Conversations and customers](/en/operations/conversations). Publishing an Agent or accepting a call request does not by itself mean a customer was connected.
 
 <Note>
-Voice configuration changes do not alter calls already in progress. Check Agent edits and channel changes with a **new** conversation.
+Voice configuration changes do not alter calls already in progress. Check Agent edits and voice settings with a **new** conversation.
 </Note>
