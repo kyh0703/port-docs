@@ -9,7 +9,8 @@
   },
   "logo": {
     "light": "/brand/overthinker-logo-light.png",
-    "dark": "/brand/overthinker-logo-dark.png"
+    "dark": "/brand/overthinker-logo-dark.png",
+    "href": "https://macbookpro.tail9f349d.ts.net:8443/"
   },
   "colors": {
     "primary": "#625582",
