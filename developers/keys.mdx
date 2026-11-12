@@ -1,6 +1,6 @@
 ---
 title: "API 키"
-description: "서버 발신용 Private 키와 웹챗용 Public 키의 권한과 보관 위치를 구분해요"
+description: "서버 발신, 자원 관리와 웹챗용 키의 권한과 보관 위치를 구분해요"
 ---
 
 외부에서 Overthinker를 사용할 때는 **누가 요청을 보내는지**에 따라 키가 달라요. 로그인한 뒤 **API 키** 화면에서 발급·폐기할 수 있어요.
@@ -9,11 +9,18 @@ description: "서버 발신용 Private 키와 웹챗용 Public 키의 권한과 
 | --- | --- | --- | --- |
 | 내 서버 | Private `ot_sk_` | 발신 HTTP API, MCP·A2A 인증 | 서버의 비밀 저장소 |
 | 기존 서버 연동 | `ot_call_` / `ot_mcp_` | 각각 발신 HTTP API / MCP·A2A 인증 전용 | 서버의 비밀 저장소 |
+| 평가·시뮬레이션 자동화 | 관리 `ot_sk_mgmt_` | 선택한 자원의 `read`·`write`·`delete` | 서버의 비밀 저장소 |
 | 내 웹사이트 | Public `ot_pk_` | 지정한 웹챗과 허용 Origin에서 시작하는 브라우저 세션 | 웹챗 설치 코드 |
 
 <Note>
 키의 인증 범위와 실제로 열려 있는 기능은 달라요. 현재 운영 환경에서 **MCP 전화 도구는 활성화되지 않았어요**. 서버 발신은 [HTTP 통화 API](/developers/calls)를 사용해요. 외부 A2A 작업 실행도 지원하지 않아요.
 </Note>
+
+## 자원 관리 API 키
+
+**API 키 → 자원 관리 API 키**에서 키를 만들고 필요한 권한만 선택해요. 평가에는 `evals:read`, `evals:write`, `evals:delete`, 시뮬레이션에는 `simulations:read`, `simulations:write`, `simulations:delete`를 각각 선택해요. 실행에는 해당 자원의 `:write`가 필요하고 와일드카드 권한은 없어요. 전체 키 값은 발급 시 한 번만 표시돼요.
+
+관리 키는 발신용 Private 키와 별개예요. MCP에서 평가를 사용하려면 관리 키와 평가 기능을 지원하는 어댑터가 필요하며, 관리 키가 전화 권한을 얻지는 않아요. 허용 IP를 지정했다면 MCP 어댑터와 API 사이에 원본 IP 증명이 설정되어야 해요.
 
 ## Private 키
 

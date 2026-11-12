@@ -1,26 +1,33 @@
 ---
 title: "Evaluations"
-description: "Run an independent prompt/model evaluation, then text-test the current production Agent"
+description: "Evaluate prompts, simulate conversations, and text-test the current production Agent"
 ---
 
-Sign in and open **Evals** (`/evals`) in the app. Choose the target you want to check: the two tabs run different things.
+Sign in and open **Evals** (`/evals`). The three tabs run different targets.
 
 | Tab | What it runs | Prerequisite |
 | --- | --- | --- |
 | **Prompt/model evaluation** | Sends your system prompt and user turns directly to the selected model. It does not run the Agent graph or Live deployment. | A usable OpenAI or OpenRouter model and provider credential |
 | **Live deployed Agent test** | Creates a new text conversation using the Agent's **current production Live revision**. | An active production deployment for that Agent |
+| **Conversation simulator** | A simulated user and the selected target model have a text conversation. It does not run the Agent graph or Live deployment. | An available target model and the platform tester and judge |
 
 ## Model scenarios
 
-1. Under **Prompt/model evaluation → New evaluation**, enter a name, OpenAI/OpenRouter provider, model ID, and system prompt. If needed, add names and values for variables such as `{{product_name}}` to use in the prompt or turns.
-2. Place an **Expected response** after a **User turn**. To check tool behavior, add **Tool mocks** after that user turn, in the expected call order, with each tool name and returned content. Mocks from one user turn do not carry over to the next.
-3. Select **Save → Run evaluation**. In **Run history**, check pass/fail/error, score, actual and expected answers, and any mock tool calls. The record also retains the settings used for the run.
+1. Under **Prompt/model evaluation → New evaluation**, enter the target provider and model, a name, and system prompt. Add variables such as `{{product_name}}` if needed.
+2. Place an **Expected response** after a **User turn**. To check a tool, add a **Tool mock** after that user turn with its name, returned content, and optional expected JSON arguments. List mocks in the expected call order; they do not carry into the next user turn.
+3. Select **Save → Run evaluation**. The run history shows the actual answer, GPT-6-Luna's semantic verdict and reason, and tool-call and argument checks.
 
-An expected response passes when it is **contained in the actual answer** after whitespace and case normalization; this is not an exact-answer check. Mocks return only the authored names and results in order. No real external tools run. A different tool call from the model can produce an error.
+Every authored mock must be called in order. Expected arguments, when supplied, must match the actual JSON structure and values. A missing call or mismatch fails the evaluation; an unexpected tool call is an error. No real external tool runs. Earlier runs may have used a different judging method.
 
 <Note>
-Save before running; at least one expected response must follow a user turn. An account can have up to 100 evaluation definitions and 16 variables per definition. You can add up to 12 user turns and 12 tool turns (24 turns in total). Up to 100 recent runs are listed per evaluation, and only one evaluation can run at a time per user. Model API calls may incur costs.
+Save before running; at least one expected response is required. An account can have up to 100 evaluation definitions and 16 variables per definition. Each definition can have up to 12 user turns and 12 tool turns, with 24 turns in total. Up to 100 recent runs are listed per evaluation. Target and platform model calls may incur costs.
 </Note>
+
+## Conversation simulations
+
+Under **Conversation simulator → New scenario**, enter the target model and system prompt, the simulated user's prompt, 1–6 turns, and 1–8 success criteria. Optionally add up to 12 tool mocks. After saving, the chosen target model replies while platform `gpt-6-luna` generates the user turns and judges the criteria.
+
+Mocks must be called in the authored order across the conversation. Code checks calls and expected arguments; no real API or MCP tool runs. The result includes the transcript, reasons, tool checks, and the saved settings used for that run.
 
 ## Live Agent tests
 
@@ -28,3 +35,48 @@ Save before running; at least one expected response must follow a user turn. An 
 2. Select **Start test**, enter any required variables, and have a conversation. Check the transcript and execution/performance records. This creates a new conversation and may consume usage.
 
 This tab runs **current Live**, not the [draft or test-only revision in the Agent editor](/en/ai/agents). If **Start test** is disabled, check whether the Agent has a production deployment and use **Deploy** in its editor. If the model evaluation errors, check the provider credential and model ID (OpenRouter also needs an active model price), then the mock call order. If it is graded as failed, compare the actual and expected answers. This Live conversation is a text test; it does not validate SIP phone transfer to a human.
+
+## API and Claude integration
+
+Grant a [resource management API key](/en/developers/keys) only the `evals:read`, `evals:write`, `simulations:read`, and `simulations:write` scopes it needs. Deletion requires the respective `:delete` scope. Send it as `Authorization: Bearer <management key>` and keep it in a secret store.
+
+Create, read, update, and delete definitions under `/api/v1/evals` and `/api/v1/simulations`. `POST /api/v1/evals/{id}/runs` and `POST /api/v1/simulations/{id}/runs` return the completed result; `GET` on the same paths returns run history. If a response is lost, check history before retrying: a repeated request can create another run and incur additional model costs.
+
+The `ownyai` CLI defaults to a 30-second HTTP timeout, which can be shorter than a model run. Set a longer timeout such as `--timeout 60` for a run, and check history before retrying an unanswered request.
+
+```json
+{
+  "name": "Order status",
+  "provider": "openai",
+  "model": "gpt-6-sol",
+  "systemPrompt": "Check and explain the order status.",
+  "turns": [
+    { "id": "user-1", "role": "user", "content": "Where is order 42?" },
+    { "id": "tool-1", "role": "tool", "toolName": "lookup_order", "content": "{\"status\":\"in transit\"}", "expectedArguments": { "orderId": 42 } },
+    { "id": "expected-1", "role": "assistant", "content": "Explain that the order is in transit." }
+  ],
+  "variables": {}
+}
+```
+
+Use this object as the JSON body when creating an evaluation. Where the MCP adapter is deployed and configured, connect Claude or another client with the same management key and use tools such as `list_evaluations`, `run_evaluation`, `judge_evaluation`, `list_simulations`, and `run_simulation`. Calling keys and management keys have separate permissions.
+
+### Judge an external model's transcript
+
+Send already-generated results to `POST /api/v1/evals/{id}/runs/judge`. Include exactly one `steps` item for each saved user turn in the same order; use an empty `tools` array when no tool was called.
+
+```json
+{
+  "steps": [
+    {
+      "userTurnId": "user-1",
+      "actual": "Order 42 is in transit.",
+      "tools": [
+        { "name": "lookup_order", "args": { "orderId": 42 }, "result": "{\"status\":\"in transit\"}" }
+      ]
+    }
+  ]
+}
+```
+
+This route does not call the target model again. Platform `gpt-6-luna` judges the supplied evidence and saves the result in the evaluation's history. Tool arguments and results are **caller-supplied evidence**, not proof that a tool actually ran. Do not put keys or other secrets in the record.

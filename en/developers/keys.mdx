@@ -1,6 +1,6 @@
 ---
 title: "API keys"
-description: "Separate server-only Private credentials from browser-only Public web chat keys"
+description: "Separate server calling, resource management, and browser web chat credentials"
 ---
 
 Choose a key based on **who sends the request**. After signing in, create and revoke keys under **API Keys**.
@@ -9,11 +9,18 @@ Choose a key based on **who sends the request**. After signing in, create and re
 | --- | --- | --- | --- |
 | Your server | Private `ot_sk_` | Outbound HTTP calling API, MCP and A2A authentication | Server secret store |
 | Existing server integrations | `ot_call_` / `ot_mcp_` | Outbound HTTP calls / MCP and A2A authentication only, respectively | Server secret store |
+| Evaluation automation | Management `ot_sk_mgmt_` | Selected resource `read`, `write`, and `delete` scopes | Server secret store |
 | Your website | Public `ot_pk_` | Browser sessions for specified web chat endpoints and Origins | Web chat installation code |
 
 <Note>
 A key's authentication scope does not guarantee that a runtime feature is enabled. **MCP calling tools are disabled in the current deployment**; use the [Outbound API](/en/developers/calls) for server calls. External A2A task execution is not supported either.
 </Note>
+
+## Resource management keys
+
+Under **API Keys → Resource management API keys**, select only the scopes you need: `evals:read`, `evals:write`, `evals:delete`, `simulations:read`, `simulations:write`, or `simulations:delete`. Running a scenario requires its resource's `:write` scope; wildcard scopes are not supported. The full key is shown only once.
+
+Management keys are separate from Private calling keys. MCP evaluation tools require an adapter that supports management keys; this does not grant telephone access. If the key has an IP allowlist, client-IP attestation must be configured between the MCP adapter and API.
 
 ## Private keys
 
