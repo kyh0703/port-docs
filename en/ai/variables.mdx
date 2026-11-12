@@ -9,11 +9,9 @@ To insert a date, customer detail, or earlier tool result, use `{{name}}` in an 
 
 | Tokens | Value and availability |
 | --- | --- |
-| `{{오늘}}`, `{{지금시각}}`, `{{요일}}`, `{{지금}}` | Date, time, and weekday in Korea Standard Time (KST). Date tokens accept offsets up to ±366 days, for example `{{오늘+1}}`. |
-| `{{연}}`, `{{월}}`, `{{일}}`, `{{달력}}` | Year, month, day, and a Korean-language calendar covering 14 days from today. Put the calendar in the system prompt; in a greeting, all its dates may be read aloud. |
-| `{{고객전화번호}}`, `{{통화방향}}` | Customer number is **phone-only** and empty on web chat. Call direction is inbound or outbound. |
-
-System tokens retain their Korean names even when editing in English.
+| `{{date}}`, `{{time}}`, `{{weekday}}`, `{{now}}` | Date, time, and weekday in Korea Standard Time (KST). Date tokens accept offsets up to ±366 days, for example `{{date+1}}`. |
+| `{{year}}`, `{{month}}`, `{{day}}`, `{{calendar}}` | Year, month, day, and a Korean-language calendar covering 14 days from today. Year, month, and day values include Korean units. Put the calendar in the system prompt; in a greeting, all its dates may be read aloud. |
+| `{{customer.number}}`, `{{call.direction}}` | Customer number is **phone-only** and empty on web chat. Call direction is formatted in Korean as `인바운드` or `아웃바운드`. |
 
 ## User variables
 
@@ -23,4 +21,4 @@ Add a new name such as `{{order_id}}` to a prompt or greeting; it becomes a user
 
 Add an **output JSON Schema** to a [REST tool](/en/ai/tools). Scalar string, number, and boolean fields then become candidates named `api.<functionName>.<field>`. In the Agent node, open the receiving REST tool's **value sources** (double-arrow icon) and bind its **request argument** or `{{variable}}` in the URL to the earlier tool's response variable. The earlier tool must run and return a value first. Handoff parameters can also be selected as sources on reachable downstream nodes.
 
-**Deploy** the Agent and check a new conversation for the substituted value. If it is missing, fill the required conversation input and check the tool URL binding. User variables are limited to **50 entries**, **64 UTF-8 bytes** per name, and **1,000 UTF-8 bytes** per string value. System names and reserved namespaces such as `api.` cannot be used for user variables.
+**Deploy** the Agent and check a new conversation for the substituted value. If it is missing, fill the required conversation input and check the tool URL binding. User variables are limited to **50 entries**, **64 UTF-8 bytes** per name, and **1,000 UTF-8 bytes** per string value. Names start with a lowercase English letter and use lowercase English letters, digits, and the separators `.`, `_`, or `-` between letters or digits. Values may contain Korean text. System names and reserved namespaces such as `api.` cannot be used for user variables.
